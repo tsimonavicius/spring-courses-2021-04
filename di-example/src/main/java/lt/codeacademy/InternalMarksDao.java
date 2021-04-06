@@ -1,7 +1,11 @@
 package lt.codeacademy;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component
 public class InternalMarksDao implements MarksDao {
 
     @Override

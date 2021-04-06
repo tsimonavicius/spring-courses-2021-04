@@ -1,5 +1,8 @@
 package lt.codeacademy;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class GradeService {
 
     private MarksDao marksDao;
