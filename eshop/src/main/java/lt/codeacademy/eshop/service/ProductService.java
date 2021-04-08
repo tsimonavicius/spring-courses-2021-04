@@ -8,15 +8,14 @@ import java.util.UUID;
 /**
  * @author Andrius Baltrunas
  */
-public interface ProductService
-{
-	void addProduct(Product product);
+public interface ProductService {
+    void addProduct(Product product);
 
-	Product getProduct(UUID uuid);
+    Product getProduct(UUID uuid);
 
-	List<Product> getProducts();
+    List<Product> getProducts();
 
-	void update(Product product);
+    void update(Product product);
 
-	void delete(UUID uuid);
+    void delete(UUID uuid);
 }

@@ -14,66 +14,61 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/products")
-public class ProductsController
-{
+public class ProductsController {
 
-	private final ProductService productService;
+    private final ProductService productService;
 
-	public ProductsController(@Qualifier("productServiceImpl") ProductService productService)
-	{
-		this.productService = productService;
-	}
+    public ProductsController(@Qualifier("productServiceImpl") ProductService productService) {
+        this.productService = productService;
+    }
 
-	@GetMapping("/create")
-	public String openCreateProductForm(Model model)
-	{
-		model.addAttribute("product", new Product());
-		return "product";
-	}
+    @GetMapping("/create")
+    public String openCreateProductForm(Model model) {
+        model.addAttribute("product", new Product());
+        return "product";
+    }
 
-	@PostMapping("/create")
-	public String createProduct(Product product, Model model)
-	{
-		model.addAttribute("product", new Product());
-		model.addAttribute("success", "Product save successfully");
+    @PostMapping("/create")
+    public String createProduct(Product product, Model model) {
+        model.addAttribute("product", new Product());
+        model.addAttribute("success", "Product save successfully");
 
-		productService.addProduct(product);
+        productService.addProduct(product);
 
-		return "product";
-	}
+        return "product";
+    }
 
-	@GetMapping
-	public String getProducts(Model model)
-	{
-		model.addAttribute("products", productService.getProducts());
+    @GetMapping
+    public String getProducts(Model model) {
+        model.addAttribute("products", productService.getProducts());
 
-		return "products";
-	}
+        return "products";
+    }
 
-	@GetMapping("/update")
-	public String updateProduct(@RequestParam UUID uuid, Model model){
-		Product product = productService.getProduct(uuid);
+    @GetMapping("/update")
+    public String updateProduct(@RequestParam UUID uuid, Model model) {
+        Product product = productService.getProduct(uuid);
 
-		model.addAttribute("product", product);
+        model.addAttribute("product", product);
 
-		return "product";
-	}
+        return "product";
+    }
 
-	@PostMapping("/update")
-	public String updateProject(Product product, Model model){
-		productService.update(product);
-		model.addAttribute("products", productService.getProducts());
+    @PostMapping("/update")
+    public String updateProject(Product product, Model model) {
+        productService.update(product);
+        model.addAttribute("products", productService.getProducts());
 
-		return "products";
-	}
+        return "products";
+    }
 
-	@GetMapping("/delete")
-	public String deleteProduct(@RequestParam UUID uuid, Model model){
-		productService.delete(uuid);
+    @GetMapping("/delete")
+    public String deleteProduct(@RequestParam UUID uuid, Model model) {
+        productService.delete(uuid);
 
-		model.addAttribute("products", productService.getProducts());
+        model.addAttribute("products", productService.getProducts());
 
-		return "products";
-	}
+        return "products";
+    }
 
 }

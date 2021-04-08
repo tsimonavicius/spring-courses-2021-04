@@ -11,57 +11,48 @@ import java.util.UUID;
  * @author Andrius Baltrunas
  */
 @Service
-public class ProductServiceImpl implements ProductService
-{
-	private static final int MAX_COUNT = 10;
+public class ProductServiceImpl implements ProductService {
+    private static final int MAX_COUNT = 10;
 
-	private final ProductRepository repository;
+    private final ProductRepository repository;
 
-	public ProductServiceImpl(ProductRepository repository)
-	{
-		this.repository = repository;
-	}
+    public ProductServiceImpl(ProductRepository repository) {
+        this.repository = repository;
+    }
 
-	@Override
-	public void addProduct(Product product)
-	{
-		int count = 0;
-		while(MAX_COUNT >= count)
-		{
-			UUID uuid = UUID.randomUUID();
-			Product p = getProduct(uuid);
-			if(p == null)
-			{
-				product.setUuid(uuid);
-				repository.save(product);
-				break;
-			}
+    @Override
+    public void addProduct(Product product) {
+        int count = 0;
+        while (MAX_COUNT >= count) {
+            UUID uuid = UUID.randomUUID();
+            Product p = getProduct(uuid);
+            if (p == null) {
+                product.setUuid(uuid);
+                repository.save(product);
+                break;
+            }
 
-			count++;
-		}
-	}
+            count++;
+        }
+    }
 
-	@Override
-	public Product getProduct(UUID uuid)
-	{
-		return repository.getProduct(uuid);
-	}
+    @Override
+    public Product getProduct(UUID uuid) {
+        return repository.getProduct(uuid);
+    }
 
-	@Override
-	public List<Product> getProducts()
-	{
-		return repository.getProducts();
-	}
+    @Override
+    public List<Product> getProducts() {
+        return repository.getProducts();
+    }
 
-	@Override
-	public void update(Product product)
-	{
-		repository.update(product);
-	}
+    @Override
+    public void update(Product product) {
+        repository.update(product);
+    }
 
-	@Override
-	public void delete(UUID uuid)
-	{
-		repository.delete(uuid);
-	}
+    @Override
+    public void delete(UUID uuid) {
+        repository.delete(uuid);
+    }
 }

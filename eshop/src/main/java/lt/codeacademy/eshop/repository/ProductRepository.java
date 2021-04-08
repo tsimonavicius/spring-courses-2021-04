@@ -13,37 +13,30 @@ import java.util.UUID;
  * @author Andrius Baltrunas
  */
 @Repository
-public class ProductRepository
-{
-	private final Map<UUID, Product> products;
+public class ProductRepository {
+    private final Map<UUID, Product> products;
 
-	public ProductRepository()
-	{
-		products = new HashMap<>();
-	}
+    public ProductRepository() {
+        products = new HashMap<>();
+    }
 
-	public void save(Product product)
-	{
-		products.put(product.getUuid(), product);
-	}
+    public void save(Product product) {
+        products.put(product.getUuid(), product);
+    }
 
-	public Product getProduct(UUID uuid)
-	{
-		return products.get(uuid);
-	}
+    public Product getProduct(UUID uuid) {
+        return products.get(uuid);
+    }
 
-	public List<Product> getProducts()
-	{
-		return new ArrayList<>(products.values());
-	}
+    public List<Product> getProducts() {
+        return new ArrayList<>(products.values());
+    }
 
-	public void update(Product product)
-	{
-		products.put(product.getUuid(), product);
-	}
+    public void update(Product product) {
+        products.put(product.getUuid(), product);
+    }
 
-	public void delete(UUID uuid)
-	{
-		products.remove(uuid);
-	}
+    public void delete(UUID uuid) {
+        products.remove(uuid);
+    }
 }
