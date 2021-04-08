@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/products")
@@ -37,6 +40,40 @@ public class ProductsController
 		productService.addProduct(product);
 
 		return "product";
+	}
+
+	@GetMapping
+	public String getProducts(Model model)
+	{
+		model.addAttribute("products", productService.getProducts());
+
+		return "products";
+	}
+
+	@GetMapping("/update")
+	public String updateProduct(@RequestParam UUID uuid, Model model){
+		Product product = productService.getProduct(uuid);
+
+		model.addAttribute("product", product);
+
+		return "product";
+	}
+
+	@PostMapping("/update")
+	public String updateProject(Product product, Model model){
+		productService.update(product);
+		model.addAttribute("products", productService.getProducts());
+
+		return "products";
+	}
+
+	@GetMapping("/delete")
+	public String deleteProduct(@RequestParam UUID uuid, Model model){
+		productService.delete(uuid);
+
+		model.addAttribute("products", productService.getProducts());
+
+		return "products";
 	}
 
 }

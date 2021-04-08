@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>All products</title>
+</head>
+<body>
+
+	<div th:if="${#lists.isEmpty(products)}">Products list is empty</div>
+
+	<div th:unless="${#lists.isEmpty(products)}">
+		<table>
+			<thead>
+			<tr>
+				<td>Name</td>
+				<td>Quantity</td>
+				<td>Price</td>
+				<td></td>
+			</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product: ${products}">
+					<td><a th:href="@{'/products/update?uuid=' + ${product.uuid}}" th:text="${product.name}"></a></td>
+					<td th:text="${product.quantity}"></td>
+					<td th:text="${product.price}"></td>
+					<td><a th:href="@{'/products/delete?uuid=' + ${product.uuid}}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

@@ -4,6 +4,7 @@ import lt.codeacademy.eshop.model.Product;
 import lt.codeacademy.eshop.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -44,5 +45,23 @@ public class ProductServiceImpl implements ProductService
 	public Product getProduct(UUID uuid)
 	{
 		return repository.getProduct(uuid);
+	}
+
+	@Override
+	public List<Product> getProducts()
+	{
+		return repository.getProducts();
+	}
+
+	@Override
+	public void update(Product product)
+	{
+		repository.update(product);
+	}
+
+	@Override
+	public void delete(UUID uuid)
+	{
+		repository.delete(uuid);
 	}
 }
