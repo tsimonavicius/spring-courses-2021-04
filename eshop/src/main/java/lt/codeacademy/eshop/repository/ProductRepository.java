@@ -36,7 +36,22 @@ public class ProductRepository {
     }
 
     public List<Product> getProducts() {
-        return jdbcTemplate.query("SELECT * FROM Products", new ProductMapper());
+
+        return jdbcTemplate.query("SELECT * FROM Products", new RowMapper<Product>() {
+
+            @Override
+            public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Product product = new Product();
+
+                product.setId(UUID.fromString(rs.getString("id")));
+                product.setName(rs.getString("name"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setPrice(rs.getBigDecimal("price"));
+                product.setDescription(rs.getString("description"));
+
+                return product;
+            }
+        });
     }
 
     public void update(Product product) {
@@ -45,21 +60,5 @@ public class ProductRepository {
 
     public void delete(UUID uuid) {
         products.remove(uuid);
-    }
-
-
-    private class ProductMapper implements RowMapper<Product> {
-        @Override
-        public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Product product = new Product();
-
-            product.setId(UUID.fromString(rs.getString("id")));
-            product.setName(rs.getString("name"));
-            product.setQuantity(rs.getInt("quantity"));
-            product.setPrice(rs.getBigDecimal("price"));
-            product.setDescription(rs.getString("description"));
-
-            return product;
-        }
     }
 }
