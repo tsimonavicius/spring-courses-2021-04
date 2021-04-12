@@ -45,6 +45,14 @@ public class ProductsController {
         return "products";
     }
 
+    @GetMapping("/findByName")
+    public String getProductByName(@RequestParam String name, Model model) {
+
+        model.addAttribute("product", productService.getByName(name));
+
+        return "product";
+    }
+
     @GetMapping("/update")
     public String updateProduct(@RequestParam UUID id, Model model) {
         Product product = productService.getProduct(id);

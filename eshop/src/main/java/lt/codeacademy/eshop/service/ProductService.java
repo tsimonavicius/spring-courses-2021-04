@@ -18,4 +18,6 @@ public interface ProductService {
     void update(Product product);
 
     void delete(UUID uuid);
+
+    Product getByName(String name);
 }

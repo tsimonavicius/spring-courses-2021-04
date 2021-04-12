@@ -49,4 +49,9 @@ public class ProductServiceImpl implements ProductService {
     public void delete(UUID uuid) {
         repository.delete(uuid);
     }
+
+    @Override
+    public Product getByName(String name) {
+        return jpaProductRepository.findByName(name).get(0);
+    }
 }
