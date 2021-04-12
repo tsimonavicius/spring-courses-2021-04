@@ -20,10 +20,10 @@
 			</thead>
 			<tbody>
 				<tr th:each="product: ${products}">
-					<td><a th:href="@{'/products/update?uuid=' + ${product.getId}}" th:text="${product.name}"></a></td>
+					<td><a th:href="@{/products/update(id=${product.id})}" th:text="${product.name}"></a></td>
 					<td th:text="${product.quantity}"></td>
 					<td th:text="${product.price}"></td>
-					<td><a th:href="@{'/products/delete?uuid=' + ${product.getId}}">Delete</a></td>
+					<td><a th:href="@{/products/delete(id=${product.id})}">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>
