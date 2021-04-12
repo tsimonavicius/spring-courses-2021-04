@@ -2,11 +2,8 @@ package lt.codeacademy.eshop.repository;
 
 import lt.codeacademy.eshop.model.Product;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,10 +34,7 @@ public class ProductRepository {
 
     public List<Product> getProducts() {
 
-        return jdbcTemplate.query("SELECT * FROM Products", new RowMapper<Product>() {
-
-            @Override
-            public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return jdbcTemplate.query("SELECT * FROM Products", (rs, rowNum) -> {
                 Product product = new Product();
 
                 product.setId(UUID.fromString(rs.getString("id")));
@@ -50,8 +44,7 @@ public class ProductRepository {
                 product.setDescription(rs.getString("description"));
 
                 return product;
-            }
-        });
+            });
     }
 
     public void update(Product product) {
