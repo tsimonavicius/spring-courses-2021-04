@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
             UUID uuid = UUID.randomUUID();
             Product p = getProduct(uuid);
             if (p == null) {
-                product.setUuid(uuid);
+                product.setId(uuid);
                 repository.save(product);
                 break;
             }

@@ -21,7 +21,7 @@ public class ProductRepository {
     }
 
     public void save(Product product) {
-        products.put(product.getUuid(), product);
+        products.put(product.getId(), product);
     }
 
     public Product getProduct(UUID uuid) {
@@ -33,7 +33,7 @@ public class ProductRepository {
     }
 
     public void update(Product product) {
-        products.put(product.getUuid(), product);
+        products.put(product.getId(), product);
     }
 
     public void delete(UUID uuid) {
