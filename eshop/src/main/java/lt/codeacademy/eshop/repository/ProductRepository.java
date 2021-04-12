@@ -25,7 +25,7 @@ public class ProductRepository {
     }
 
     public void save(Product product) {
-        products.put(product.getId(), product);
+//        products.put(product.getId(), product);
     }
 
     public Product getProduct(UUID uuid) {
@@ -37,7 +37,7 @@ public class ProductRepository {
         return jdbcTemplate.query("SELECT * FROM Products", (rs, rowNum) -> {
                 Product product = new Product();
 
-                product.setId(UUID.fromString(rs.getString("id")));
+                product.setId(rs.getString("id"));
                 product.setName(rs.getString("name"));
                 product.setQuantity(rs.getInt("quantity"));
                 product.setPrice(rs.getBigDecimal("price"));
@@ -48,7 +48,7 @@ public class ProductRepository {
     }
 
     public void update(Product product) {
-        products.put(product.getId(), product);
+//        products.put(product.getId(), product);
     }
 
     public void delete(UUID uuid) {
