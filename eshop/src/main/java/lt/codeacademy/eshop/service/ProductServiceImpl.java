@@ -6,7 +6,6 @@ import lt.codeacademy.eshop.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -32,13 +31,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProduct(UUID id) {
-        Optional<Product> productBox = jpaProductRepository.findById(id);
-
-        if (productBox.isPresent()) {
-            return productBox.get();
-        } else {
-            throw new ProductNotFoundException();
-        }
+        return jpaProductRepository.findById(id)
+                .orElseThrow(ProductNotFoundException::new);
     }
 
     @Override
