@@ -21,20 +21,28 @@
 						th:href="@{/products(sort='name,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} )}">
 						Name
 						<i class="fas"
-						   th:classappend="${direction?.name() eq 'ASC' ? 'fa-sort-alpha-down' : 'fa-sort-alpha-up'}"
+						   th:classappend="${direction?.name() eq 'ASC' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down'}"
 						   th:if="${direction ne null}"></i>
 					</a>
 				</td>
 				<td>
-					<a th:href="@{/products(sort='quantity,ASC')}">
+					<a
+						th:with="direction=${productsPage.sort.getOrderFor('quantity')?.direction}"
+						th:href="@{/products(sort='quantity,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} )}">
 						Quantity
-						<i class="fas fa-sort-numeric-up" th:if="${productsPage.sort.getOrderFor('quantity') ne null}"></i>
+						<i class="fas"
+						   th:classappend="${direction?.name() eq 'ASC' ? 'fa-sort-numeric-down' : 'fa-sort-numeric-up'}"
+						   th:if="${direction ne null}"></i>
 					</a>
 				</td>
 				<td>
-					<a th:href="@{/products(sort='price,ASC')}">
+					<a
+						th:with="direction=${productsPage.sort.getOrderFor('price')?.direction}"
+						th:href="@{/products(sort='price,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} )}">
 						Price
-						<i class="fas fa-sort-numeric-up" th:if="${productsPage.sort.getOrderFor('price') ne null}"></i>
+						<i class="fas"
+						   th:classappend="${direction?.name() eq 'ASC' ? 'fa-sort-numeric-down' : 'fa-sort-numeric-up'}"
+						   th:if="${direction ne null}"></i>
 					</a>
 				</td>
 				<td></td>
