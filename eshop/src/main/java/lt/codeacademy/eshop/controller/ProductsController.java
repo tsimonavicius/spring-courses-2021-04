@@ -4,6 +4,7 @@ import lt.codeacademy.eshop.model.Product;
 import lt.codeacademy.eshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,7 @@ public class ProductsController {
     }
 
     @GetMapping
-    public String getProducts(Pageable pageable, Model model) {
+    public String getProducts(@PageableDefault(size = 5) Pageable pageable, Model model) {
         model.addAttribute("productsPage", productService.getProductsPaginated(pageable));
 
         return "products";
