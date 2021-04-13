@@ -42,12 +42,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void update(Product product) {
-        repository.update(product);
+        jpaProductRepository.save(product);
     }
 
     @Override
-    public void delete(UUID uuid) {
-        repository.delete(uuid);
+    public void delete(UUID id) {
+        jpaProductRepository.deleteById(id);
     }
 
     @Override
