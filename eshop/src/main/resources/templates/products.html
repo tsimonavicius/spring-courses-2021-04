@@ -16,9 +16,13 @@
 			<thead>
 			<tr>
 				<td>
-					<a th:href="@{/products(sort='name,ASC')}">
+					<a
+						th:with="direction=${productsPage.sort.getOrderFor('name')?.direction}"
+						th:href="@{/products(sort='name,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} )}">
 						Name
-						<i class="fas fa-sort-alpha-up" th:if="${productsPage.sort.getOrderFor('name') ne null}"></i>
+						<i class="fas"
+						   th:classappend="${direction?.name() eq 'ASC' ? 'fa-sort-alpha-down' : 'fa-sort-alpha-up'}"
+						   th:if="${direction ne null}"></i>
 					</a>
 				</td>
 				<td>
