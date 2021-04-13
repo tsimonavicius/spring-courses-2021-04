@@ -14,7 +14,7 @@ public class Product {
 
     @Id
     @GeneratedValue
-    @Column(columnDefinition = "VARCHAR(36)")
+    @Column(columnDefinition = "VARCHAR(36)", updatable = false)
     @Type(type = "uuid-char")
     private UUID id;
 
