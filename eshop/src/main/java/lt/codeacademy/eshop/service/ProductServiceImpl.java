@@ -2,6 +2,8 @@ package lt.codeacademy.eshop.service;
 
 import lt.codeacademy.eshop.model.Product;
 import lt.codeacademy.eshop.repository.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,5 +50,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getByName(String name) {
         return productRepository.findByName(name).get(0);
+    }
+
+    @Override
+    public Page<Product> getProductsPaginated(Pageable pageable) {
+        return productRepository.findAll(pageable);
     }
 }
