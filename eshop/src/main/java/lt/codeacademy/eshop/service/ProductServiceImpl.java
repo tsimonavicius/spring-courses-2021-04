@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void addProduct(Product product) {
-        product.setId(UUID.randomUUID().toString());
+        product.setId(UUID.randomUUID());
         jpaProductRepository.save(product);
     }
 

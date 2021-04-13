@@ -37,7 +37,7 @@ public class ProductRepository {
         return jdbcTemplate.query("SELECT * FROM Products", (rs, rowNum) -> {
                 Product product = new Product();
 
-                product.setId(rs.getString("id"));
+                product.setId(UUID.fromString(rs.getString("id")));
                 product.setName(rs.getString("name"));
                 product.setQuantity(rs.getInt("quantity"));
                 product.setPrice(rs.getBigDecimal("price"));
