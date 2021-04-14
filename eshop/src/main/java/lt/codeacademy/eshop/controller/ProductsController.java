@@ -1,6 +1,7 @@
 package lt.codeacademy.eshop.controller;
 
 import lt.codeacademy.eshop.model.Product;
+import lt.codeacademy.eshop.service.MessageService;
 import lt.codeacademy.eshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
@@ -20,15 +21,19 @@ import java.util.UUID;
 public class ProductsController {
 
     private final ProductService productService;
+    private final MessageService messageService;
 
-    public ProductsController(@Qualifier("productServiceImpl") ProductService productService) {
+    public ProductsController(@Qualifier("productServiceImpl") ProductService productService, MessageService messageService) {
         this.productService = productService;
+        this.messageService = messageService;
     }
 
     @GetMapping("/create")
     public String openCreateProductForm(Model model, String message) {
         model.addAttribute("product", new Product());
-        model.addAttribute("success", message);
+        if (message != null) {
+            model.addAttribute("success", messageService.getMessage(message));
+        }
 
         return "product";
     }
@@ -37,7 +42,7 @@ public class ProductsController {
     public String createProduct(Product product) {
         productService.addProduct(product);
 
-        return "redirect:/products/create?message=Product save successfully";
+        return "redirect:/products/create?message=create.product.success.message";
     }
 
     @GetMapping
