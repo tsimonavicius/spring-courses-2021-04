@@ -7,6 +7,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+	<div th:text="#{hello.world}"></div>
 
 	<div th:if="${not productsPage.hasContent()}">Products list is empty</div>
 
