@@ -53,7 +53,9 @@
 					<td><a th:href="@{/products/update(id=${product.id})}" th:text="${product.name}"></a></td>
 					<td th:text="${product.quantity}"></td>
 					<td th:text="${product.price}"></td>
-					<td><a th:href="@{/products/delete(id=${product.id})}">Delete</a></td>
+					<td><a class="btn btn-outline-secondary"
+						   role="button"
+						   th:href="@{/products/delete(id=${product.id})}">Delete</a></td>
 				</tr>
 			</tbody>
 		</table>

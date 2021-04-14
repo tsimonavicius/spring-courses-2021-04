@@ -26,19 +26,18 @@ public class ProductsController {
     }
 
     @GetMapping("/create")
-    public String openCreateProductForm(Model model) {
+    public String openCreateProductForm(Model model, String message) {
         model.addAttribute("product", new Product());
+        model.addAttribute("success", message);
+
         return "product";
     }
 
     @PostMapping("/create")
-    public String createProduct(Product product, Model model) {
-        model.addAttribute("product", new Product());
-        model.addAttribute("success", "Product save successfully");
-
+    public String createProduct(Product product) {
         productService.addProduct(product);
 
-        return "product";
+        return "redirect:/products/create?message=Product save successfully";
     }
 
     @GetMapping
@@ -70,18 +69,14 @@ public class ProductsController {
     @PostMapping("/update")
     public String updateProject(Product product, Model model) {
         productService.update(product);
-        model.addAttribute("products", productService.getProducts());
 
-        return "products";
+        return "redirect:/products";
     }
 
     @GetMapping("/delete")
     public String deleteProduct(@RequestParam UUID id, Model model) {
         productService.delete(id);
-
-        model.addAttribute("products", productService.getProducts());
-
-        return "products";
+        return "redirect:/products";
     }
 
 }
