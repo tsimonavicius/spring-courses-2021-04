@@ -1,5 +1,6 @@
 package lt.codeacademy.eshop.service;
 
+import lt.codeacademy.eshop.exception.ProductNotFoundException;
 import lt.codeacademy.eshop.model.Product;
 import lt.codeacademy.eshop.repository.ProductRepository;
 import org.springframework.data.domain.Page;

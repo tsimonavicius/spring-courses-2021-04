@@ -1,4 +1,4 @@
-package lt.codeacademy.eshop.service;
+package lt.codeacademy.eshop.exception;
 
 public class ProductNotFoundException extends RuntimeException {
 }
