@@ -2,24 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create Product</title>
+    <title th:text="#{create.product.title}"></title>
 </head>
 <body>
-    <h3>Create product:</h3>
+    <h3 th:text="#{create.product}"></h3>
     <form method="POST" th:object="${product}">
-        <label>Name:</label>
+        <label th:text="#{create.product.name}"></label>
         <input type="text" placeholder="Name" th:field="*{name}"><br/>
 
-        <label>Quantity:</label>
+        <label th:text="#{create.product.quantity}"></label>
         <input type="text" placeholder="Quantity" th:field="*{quantity}"><br/>
 
-        <label>Price:</label>
+        <label th:text="#{create.product.price}"></label>
         <input type="text" placeholder="Price" th:field="*{price}"><br/>
 
-        <label>Description:</label>
+        <label th:text="#{create.product.description}"></label>
         <textarea th:field="*{description}"></textarea><br/>
 
-        <button type="submit">Submit</button>
+        <button type="submit" th:text="#{create.product.submit}"></button>
     </form>
 
     <div th:if="${success}" th:text="${success}"></div>
