@@ -81,7 +81,10 @@
 				<li class="page-item"
 					th:each="pageNumber : ${#numbers.sequence(0, productsPage.totalPages - 1)}"
 				 	th:classappend="${pageNumber eq productsPage.number ? 'active' : ''}">
-					<a class="page-link" th:href="@{/products(page=${pageNumber})}" th:text="${pageNumber} + 1">1</a>
+					<a class="page-link"
+					   th:with="order=${productsPage.sort.iterator().hasNext() ? productsPage.sort.iterator().next() : null}"
+					   th:href="@{/products(page=${pageNumber}, sort=${order.property + ',' + order.direction})}"
+					   th:text="${pageNumber} + 1">1</a>
 				</li>
 
 				<li class="page-item"
