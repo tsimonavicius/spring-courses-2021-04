@@ -42,6 +42,11 @@ public class ProductsController {
 
     @PostMapping("/create")
     public String createProduct(@Valid Product product, BindingResult errors) {
+
+        if (errors.hasErrors()) {
+            return "product";
+        }
+
         productService.addProduct(product);
 
         return "redirect:/products/create?message=create.product.success.message";

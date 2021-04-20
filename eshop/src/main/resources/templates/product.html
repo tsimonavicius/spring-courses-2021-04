@@ -9,6 +9,7 @@
     <form method="POST" th:object="${product}">
         <label th:text="#{create.product.name}"></label>
         <input type="text" placeholder="Name" th:field="*{name}"><br/>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name errors</p>
 
         <label th:text="#{create.product.quantity}"></label>
         <input type="text" placeholder="Quantity" th:field="*{quantity}"><br/>
