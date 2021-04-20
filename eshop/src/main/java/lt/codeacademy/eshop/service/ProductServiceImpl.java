@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProduct(UUID id) {
         return productRepository.findById(id)
-                .orElseThrow(ProductNotFoundException::new);
+                .orElseThrow(() -> new ProductNotFoundException(id.toString()));
     }
 
     @Override
