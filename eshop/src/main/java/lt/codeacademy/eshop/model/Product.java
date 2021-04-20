@@ -21,7 +21,7 @@ public class Product {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @NotBlank(message = "Name negali būti tuščias")
+    @NotBlank
     @Size(
             min = 3,
             max = 50,
