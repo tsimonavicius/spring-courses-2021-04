@@ -21,7 +21,7 @@ public class Product {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @NotBlank(message = "{name.blank}")
+    @NotBlank
     @Size(
             min = 3,
             max = 50,
@@ -30,9 +30,11 @@ public class Product {
 
     @PositiveOrZero
     @Max(1000)
+    @NotNull
     private Integer quantity;
 
     @Positive
+    @NotNull
     private BigDecimal price;
 
     @Size(max = 255)

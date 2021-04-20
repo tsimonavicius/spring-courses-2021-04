@@ -13,12 +13,17 @@
 
         <label th:text="#{create.product.quantity}"></label>
         <input type="text" placeholder="Quantity" th:field="*{quantity}"><br/>
+        <ul th:if="${#fields.hasErrors('quantity')}">
+            <li th:each="error : ${#fields.errors('quantity')}" th:text="${error}"></li>
+        </ul>
 
         <label th:text="#{create.product.price}"></label>
         <input type="text" placeholder="Price" th:field="*{price}"><br/>
+        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price errors</p>
 
         <label th:text="#{create.product.description}"></label>
         <textarea th:field="*{description}"></textarea><br/>
+        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description errors</p>
 
         <button type="submit" th:text="#{create.product.submit}"></button>
     </form>
