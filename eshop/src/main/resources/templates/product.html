@@ -7,7 +7,15 @@
 </head>
 <body>
     <h3 th:text="#{create.product}"></h3>
+
     <form method="POST" th:object="${product}">
+
+        <div>
+            <ul th:if="${#fields.hasErrors()}" class="error-block">
+                <li th:each="error : ${#fields.errors()}" th:text="${error}">Error</li>
+            </ul>
+        </div>
+
         <label th:text="#{create.product.name}" th:class="${#fields.hasErrors('name')} ? error"></label>
         <input type="text" placeholder="Name" th:field="*{name}" th:errorclass="error"><br/>
         <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name errors</p>
