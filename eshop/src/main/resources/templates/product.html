@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{create.product.title}"></title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
     <h3 th:text="#{create.product}"></h3>
     <form method="POST" th:object="${product}">
-        <label th:text="#{create.product.name}"></label>
-        <input type="text" placeholder="Name" th:field="*{name}"><br/>
+        <label th:text="#{create.product.name}" th:class="${#fields.hasErrors('name')} ? error"></label>
+        <input type="text" placeholder="Name" th:field="*{name}" th:errorclass="error"><br/>
         <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name errors</p>
 
-        <label th:text="#{create.product.quantity}"></label>
-        <input type="text" placeholder="Quantity" th:field="*{quantity}"><br/>
+        <label th:text="#{create.product.quantity}" th:class="${#fields.hasErrors('quantity')} ? error"></label>
+        <input type="text" placeholder="Quantity" th:field="*{quantity}" th:errorclass="error"><br/>
         <ul th:if="${#fields.hasErrors('quantity')}">
             <li th:each="error : ${#fields.errors('quantity')}" th:text="${error}"></li>
         </ul>
 
-        <label th:text="#{create.product.price}"></label>
-        <input type="text" placeholder="Price" th:field="*{price}"><br/>
+        <label th:text="#{create.product.price}" th:class="${#fields.hasErrors('price')} ? error"></label>
+        <input type="text" placeholder="Price" th:field="*{price}" th:errorclass="error"><br/>
         <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price errors</p>
 
-        <label th:text="#{create.product.description}"></label>
-        <textarea th:field="*{description}"></textarea><br/>
+        <label th:text="#{create.product.description}" th:class="${#fields.hasErrors('description')} ? error"></label>
+        <textarea th:field="*{description}" th:errorclass="error"></textarea><br/>
         <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description errors</p>
 
         <button type="submit" th:text="#{create.product.submit}"></button>
