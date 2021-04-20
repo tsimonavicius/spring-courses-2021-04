@@ -22,6 +22,8 @@
         <button type="submit" th:text="#{create.product.submit}"></button>
     </form>
 
+    <span th:text="${now}">2021-10-10</span>
+
     <div th:if="${success}" th:text="${success}"></div>
 </body>
 </html>
