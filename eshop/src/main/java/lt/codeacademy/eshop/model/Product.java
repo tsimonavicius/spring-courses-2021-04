@@ -22,7 +22,10 @@ public class Product {
     private UUID id;
 
     @NotBlank(message = "Name negali būti tuščias")
-    @Size(min = 3, max = 50)
+    @Size(
+            min = 3,
+            max = 50,
+            message = "Name='${validatedValue}' turi būti daugiau už {min} ir mažiau už {max}")
     private String name;
 
     @PositiveOrZero
