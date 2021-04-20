@@ -21,7 +21,7 @@ public class Product {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @NotBlank
+    @NotBlank(message = "{name.blank}")
     @Size(
             min = 3,
             max = 50,
