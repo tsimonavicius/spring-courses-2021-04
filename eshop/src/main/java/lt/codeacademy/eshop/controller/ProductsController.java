@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,7 +41,7 @@ public class ProductsController {
     }
 
     @PostMapping("/create")
-    public String createProduct(@Valid Product product) {
+    public String createProduct(@Valid Product product, BindingResult errors) {
         productService.addProduct(product);
 
         return "redirect:/products/create?message=create.product.success.message";
