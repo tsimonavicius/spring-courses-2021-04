@@ -1,6 +1,7 @@
 package lt.codeacademy.eshop.model;
 
 import lombok.Data;
+import lt.codeacademy.eshop.validator.annotation.CompareFields;
 import lt.codeacademy.eshop.validator.annotation.Password;
 import lt.codeacademy.eshop.validator.annotation.PhoneNumber;
 
@@ -9,6 +10,7 @@ import lt.codeacademy.eshop.validator.annotation.PhoneNumber;
  */
 @Data
 @Password
+//@CompareFields(firstField = "password", secondField = "repeatPassword")
 public class UserRegistration {
     private String name;
     private String surname;
