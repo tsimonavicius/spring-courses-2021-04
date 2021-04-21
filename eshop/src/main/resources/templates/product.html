@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title th:text="#{create.product.title}"></title>
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+<head th:replace="fragments/main :: header(#{create.product.title})">
 </head>
 <body>
     <h3 th:text="#{create.product}"></h3>
