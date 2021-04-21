@@ -15,7 +15,10 @@
             <input type="text"
                    class="form-control"
                    id="userRegistrationName"
-                   th:field="*{name}">
+                   th:field="*{name}"
+                   aria-describedby="name"
+                   th:class="${#fields.hasErrors('name')} ? 'form-control is-invalid' : 'form-control'">
+            <div id="name" class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
         </div>
         <div class="mb-3">
             <label for="userRegistrationSurname" class="form-label" th:text="#{create.user.surname}"></label>
