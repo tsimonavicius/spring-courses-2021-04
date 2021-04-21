@@ -12,7 +12,10 @@
     <form method="post" th:object="${userRegistration}">
         <div class="mb-3">
             <label for="userRegistrationName" class="form-label" th:text="#{create.user.name}"></label>
-            <input type="text" class="form-control" id="userRegistrationName" th:field="*{name}">
+            <input type="text"
+                   class="form-control"
+                   id="userRegistrationName"
+                   th:field="*{name}">
         </div>
         <div class="mb-3">
             <label for="userRegistrationSurname" class="form-label" th:text="#{create.user.surname}"></label>
@@ -24,14 +27,18 @@
         </div>
         <div class="mb-3">
             <label for="userRegistrationPhone" class="form-label" th:text="#{create.user.phone}"></label>
-            <input type="text" class="form-control" th:classappend="${#fields.hasErrors('phone')} ? 'is-invalid' : ''" id="userRegistrationPhone" aria-describedby="phone" th:field="*{phone}">
+            <input type="text"
+                   th:class="${#fields.hasErrors('phone')} ? 'form-control is-invalid' : 'form-control'"
+                   id="userRegistrationPhone"
+                   aria-describedby="phone"
+                   th:field="*{phone}">
             <div id="phone" class="invalid-feedback" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
         </div>
         <div class="mb-3">
             <label for="userRegistrationPassword" class="form-label" th:text="#{create.user.password}"></label>
             <input type="password"
                    class="form-control"
-                   th:classappend="${#fields.hasErrors('global')} ? 'is-invalid' : ''"
+                   th:class="${#fields.hasErrors('global')} ? 'form-control is-invalid' : 'form-control'"
                    id="userRegistrationPassword"
                    aria-describedby="password"
                    th:field="*{password}">
@@ -41,7 +48,7 @@
             <label for="userRegistrationRepeatPassword" class="form-label" th:text="#{create.user.repeatPassword}"></label>
             <input type="password"
                    class="form-control"
-                   th:classappend="${#fields.hasErrors('global')} ? 'is-invalid' : ''"
+                   th:class="${#fields.hasErrors('global')} ? 'form-control is-invalid' : 'form-control'"
                    id="userRegistrationRepeatPassword"
                    aria-describedby="repeatPassword"
                    th:field="*{repeatPassword}">
