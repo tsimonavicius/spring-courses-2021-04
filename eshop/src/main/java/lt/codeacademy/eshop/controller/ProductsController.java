@@ -1,5 +1,6 @@
 package lt.codeacademy.eshop.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import lt.codeacademy.eshop.model.Product;
 import lt.codeacademy.eshop.service.MessageService;
 import lt.codeacademy.eshop.service.ProductService;
@@ -20,6 +21,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/products")
+@Slf4j
 public class ProductsController {
 
     private final ProductService productService;
