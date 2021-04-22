@@ -3,8 +3,7 @@
 <head th:replace="fragments/layout :: header(#{products.title})">
 </head>
 <body>
-<div th:replace="fragments/layout :: menu(root='products')"></div>
-
+<div th:replace="fragments/layout :: menu"></div>
 
 	<div th:if="${not productsPage.hasContent()}" th:text="#{products.empty.list}"></div>
 	<div th:if="${productsPage.hasContent()}"
