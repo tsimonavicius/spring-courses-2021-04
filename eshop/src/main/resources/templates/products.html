@@ -1,52 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/main :: header(#{products.title})">
+<head th:replace="fragments/layout :: header(#{products.title})">
 </head>
 <body>
-	<select id="languageSelector">
-		<option value="" th:text="#{lang.options}"></option>
-		<option value="LT" th:text="#{lang.lt}"></option>
-		<option value="DE" th:text="#{lang.de}"></option>
-		<option value="US" th:text="#{lang.en}"></option>
-	</select>
 
 	<div th:if="${not productsPage.hasContent()}" th:text="#{products.empty.list}"></div>
-
 	<div th:if="${productsPage.hasContent()}"
 		class="container">
 		<table class="table">
 			<thead>
 			<tr>
-				<td>
-					<a
-						th:with="direction=${productsPage.sort.getOrderFor('name')?.direction}"
-						th:href="@{/products(sort='name,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">
-						<span th:text="#{products.name}"></span>
-						<i class="fas"
-						   th:classappend="${direction?.name() eq 'ASC' ? 'fa-sort-alpha-down' : 'fa-sort-alpha-up'}"
-						   th:if="${direction ne null}"></i>
-					</a>
-				</td>
-				<td>
-					<a
-						th:with="direction=${productsPage.sort.getOrderFor('quantity')?.direction}"
-						th:href="@{/products(sort='quantity,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} )}">
-						<span th:text="#{products.quantity}"></span>
-						<i class="fas"
-						   th:classappend="${direction?.name() eq 'ASC' ? 'fa-sort-numeric-down' : 'fa-sort-numeric-up'}"
-						   th:if="${direction ne null}"></i>
-					</a>
-				</td>
-				<td>
-					<a
-						th:with="direction=${productsPage.sort.getOrderFor('price')?.direction}"
-						th:href="@{/products(sort='price,' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} )}">
-						<span th:text="#{products.price}"></span>
-						<i class="fas"
-						   th:classappend="${direction?.name() eq 'ASC' ? 'fa-sort-numeric-down' : 'fa-sort-numeric-up'}"
-						   th:if="${direction ne null}"></i>
-					</a>
-				</td>
+				<td th:insert="fragments/layout :: sortColumn(productsPage=${productsPage}, name='name', hasIgnoreCase=true, sortDown='fa-sort-alpha-down', sortUp='fa-sort-alpha-up', fieldName=#{products.name})"></td>
+				<td th:insert="fragments/layout :: sortColumn(productsPage=${productsPage}, name='quantity', hasIgnoreCase=false, sortDown='fa-sort-numeric-down', sortUp='fa-sort-numeric-up', fieldName=#{products.quantity})"></td>
+				<td th:insert="fragments/layout :: sortColumn(productsPage=${productsPage}, name='price', hasIgnoreCase=false, sortDown='fa-sort-numeric-down', sortUp='fa-sort-numeric-up', fieldName=#{products.price})"></td>
 				<td></td>
 			</tr>
 			</thead>

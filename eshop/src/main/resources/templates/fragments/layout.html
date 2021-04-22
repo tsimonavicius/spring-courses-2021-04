@@ -21,4 +21,21 @@
 <div th:fragment="footer" class="fixed-bottom">
     Our footer
 </div>
+
+<select th:fragment="language" id="languageSelector">
+    <option value="" th:text="#{lang.options}"></option>
+    <option value="LT" th:text="#{lang.lt}"></option>
+    <option value="DE" th:text="#{lang.de}"></option>
+    <option value="US" th:text="#{lang.en}"></option>
+</select>
+
+<a th:fragment="sortColumn(productsPage, name, hasIgnoreCase, sortDown, sortUp, fieldName)"
+   th:with="direction=${productsPage.sort.getOrderFor(name)?.direction}"
+   th:href="@{/products(sort=${name} + ',' + ${direction?.name() eq 'ASC' ? 'DESC' : 'ASC'} + (${hasIgnoreCase} ? ',ignorecase' : ''))}">
+    <span th:text="*{fieldName}"></span>
+    <i class="fas"
+       th:classappend="${direction?.name() eq 'ASC' ? sortDown : sortUp}"
+       th:if="${direction ne null}"></i>
+</a>
+
 </html>
