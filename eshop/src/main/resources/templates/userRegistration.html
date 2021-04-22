@@ -3,7 +3,7 @@
 <head th:replace="fragments/layout :: header(#{create.user.title})">
 </head>
 <body>
-<nav th:replace="fragments/layout :: menu"></nav>
+<nav th:replace="fragments/layout :: menu(root='user/registration')"></nav>
 <div class="container">
     <form method="post" th:object="${userRegistration}">
         <div class="mb-3">
