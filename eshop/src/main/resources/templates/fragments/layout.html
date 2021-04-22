@@ -38,4 +38,34 @@
        th:if="${direction ne null}"></i>
 </a>
 
+<div th:fragment="paginator(productsPage)">
+    <ul class="pagination"
+        th:with="order=${productsPage.sort.iterator().hasNext() ? productsPage.sort.iterator().next() : null},
+					sort=${order.property + ',' + order.direction} + (${order.property} eq 'name' ? ',ignorecase' : '')">
+        <li class="page-item"
+            th:classappend="${productsPage.number eq 0 ? 'disabled' : ''}">
+            <a class="page-link"
+               th:href="@{/products(page=${productsPage.number} - 1, sort=${sort})}"
+               th:text="#{products.previous}"></a>
+        </li>
+
+        <li class="page-item"
+            th:each="pageNumber : ${#numbers.sequence(0, productsPage.totalPages - 1)}"
+            th:classappend="${pageNumber eq productsPage.number ? 'active' : ''}">
+            <a class="page-link"
+               th:href="@{/products(page=${pageNumber}, sort=${sort})}"
+               th:text="${pageNumber} + 1">1</a>
+        </li>
+
+        <li class="page-item"
+            th:classappend="${productsPage.number eq productsPage.totalPages - 1 ? 'disabled' : ''}">
+            <a class="page-link"
+               th:href="@{/products(page=${productsPage.number} + 1, sort=${sort})}"
+               th:text="#{products.next}"></a>
+        </li>
+    </ul>
+
+    <span th:text="#{products.total(${productsPage.totalElements})}">Total: 100</span>
+</div>
+
 </html>
