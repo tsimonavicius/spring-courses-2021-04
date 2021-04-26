@@ -25,7 +25,13 @@
 					<td><a class="btn btn-outline-secondary"
 						   role="button"
 						   th:href="@{/products/delete(id=${product.id})}"
-						   th:text="#{products.delete}"></a></td>
+						   th:text="#{products.delete}"></a>
+						<form th:action="@{/cart/{id}(id = ${product.id})}" method="POST">
+							<button type="submit" class="btn btn-primary">
+								<i class="fas fa-cart-plus"></i>
+							</button>
+						</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>
