@@ -25,6 +25,12 @@
                 <td></td>
             </tr>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end">Total:</td>
+                <td th:text="${cart.totalPrice}"></td>
+            </tr>
+        </tfoot>
     </table>
 
     <button>Order</button>
