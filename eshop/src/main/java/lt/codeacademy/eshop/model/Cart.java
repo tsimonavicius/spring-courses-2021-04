@@ -5,6 +5,8 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Getter
 public class Cart {
@@ -23,5 +25,11 @@ public class Cart {
                 .map(CartItem::price) // cartItem -> cartItem.price()
                 // [1, 2, 58, 55.99] --> 8952
                 .reduce(BigDecimal.ZERO, BigDecimal::add); // 0 + 1 = 1 + 2 = 3 + 58 = 61 + 55.99 = ... <--
+    }
+
+    public Optional<CartItem> getCartItem(UUID productId) {
+        return cartItems.stream()
+                .filter(ci -> ci.getProduct().getId().equals(productId))
+                .findAny();
     }
 }

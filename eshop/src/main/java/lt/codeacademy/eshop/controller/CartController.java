@@ -1,6 +1,7 @@
 package lt.codeacademy.eshop.controller;
 
 import lt.codeacademy.eshop.model.Cart;
+import lt.codeacademy.eshop.model.CartItem;
 import lt.codeacademy.eshop.model.Product;
 import lt.codeacademy.eshop.service.ProductService;
 import org.springframework.stereotype.Controller;
@@ -34,9 +35,16 @@ public class CartController {
     @PostMapping("/{productId}")
     public String addToCart(@PathVariable UUID productId, @ModelAttribute("cart") Cart cart) {
 
-        Product product = productService.getProduct(productId);
-        cart.add(product);
+        cart.getCartItem(productId).ifPresentOrElse(
+                CartItem::increment,
+                () -> addProductToCart(productId, cart));
 
         return "redirect:/products";
+    }
+
+    private void addProductToCart(UUID productId, Cart cart) {
+
+        Product product = productService.getProduct(productId);
+        cart.add(product);
     }
 }

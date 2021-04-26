@@ -18,4 +18,8 @@ public class CartItem {
     public BigDecimal price() {
         return product.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
+
+    public void increment() {
+        quantity++;
+    }
 }
