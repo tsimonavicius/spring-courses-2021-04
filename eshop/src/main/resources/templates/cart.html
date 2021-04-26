@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Cart</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: header(#{products.title})">
 </head>
 <body>
-    <h1 th:text="${cart}">CART</h1>
+<div th:replace="fragments/layout :: menu"></div>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${cart}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td>1</td>
+                <td>500</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button>Order</button>
+</div>
+
+<div th:replace="fragments/layout :: footer"></div>
 </body>
 </html>
