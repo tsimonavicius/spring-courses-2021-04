@@ -17,11 +17,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="product : ${cart}">
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.price}"></td>
-                <td>1</td>
-                <td>500</td>
+            <tr th:each="cartItem : ${cart.cartItems}">
+                <td th:text="${cartItem.product.name}"></td>
+                <td th:text="${cartItem.product.price}"></td>
+                <td th:text="${cartItem.quantity}"></td>
+                <td th:text="${cartItem.price}"></td>
                 <td></td>
             </tr>
         </tbody>
