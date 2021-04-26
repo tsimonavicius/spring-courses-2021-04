@@ -1,6 +1,8 @@
 package lt.codeacademy.eshop.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
@@ -13,6 +15,8 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "Products")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
