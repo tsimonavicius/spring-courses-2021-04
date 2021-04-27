@@ -6,6 +6,7 @@ import lt.codeacademy.eshop.model.Product;
 import lt.codeacademy.eshop.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.UUID;
 
@@ -38,6 +39,15 @@ public class CartController {
         cart.getCartItem(productId).ifPresentOrElse(
                 CartItem::increment,
                 () -> addProductToCart(productId, cart));
+
+        return "redirect:/products";
+    }
+
+    @PostMapping
+    public String order(SessionStatus status) {
+        // save to DB...
+
+        status.setComplete();
 
         return "redirect:/products";
     }
