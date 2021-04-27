@@ -20,6 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .loginPage("/prisijungimas")
                     .loginProcessingUrl("/prisijungimas")
                     .usernameParameter("loginName")
-                    .passwordParameter("loginPassword");
+                    .passwordParameter("loginPassword")
+                    .defaultSuccessUrl("/products", true);
     }
 }
