@@ -50,7 +50,8 @@ public class CartController {
 
         status.setComplete();
 
-        redirectAttributes.addAttribute("successMessage", "order.successful");
+        redirectAttributes.addFlashAttribute("successMessage",
+                "order.successful");
 
         return "redirect:/products";
     }
