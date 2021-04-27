@@ -41,6 +41,13 @@
     </div>
 </nav>
 
+<div th:fragment="messages">
+    <div th:if="${param.successMessage ne null}" th:text="#{${param.successMessage}}"
+         class="alert alert-primary" role="alert">
+        Success!!!
+    </div>
+</div>
+
 <div th:fragment="footer" class="fixed-bottom">
     Our footer
 </div>
