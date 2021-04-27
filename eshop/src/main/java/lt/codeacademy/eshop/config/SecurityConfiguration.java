@@ -21,6 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/prisijungimas")
                     .usernameParameter("loginName")
                     .passwordParameter("loginPassword")
-                    .defaultSuccessUrl("/products", true);
+                    .defaultSuccessUrl("/products", true)
+                    .failureUrl("/prisijungimas?error");
     }
 }
