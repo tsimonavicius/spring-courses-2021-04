@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @author Andrius Baltrunas
  */
 @Configuration
-@Profile("development")
+@Profile("test")
 public class DevelopmentSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
