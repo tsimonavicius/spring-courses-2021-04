@@ -1,0 +1,11 @@
+#postgresql properties
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/eshop
+    username: eshop
+    password: mypassword
+    data: classpath:db/initial-data.sql
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
