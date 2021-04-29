@@ -61,6 +61,4 @@ class MessageServiceTest {
 
         assertEquals(MESSAGE_VALUE, message);
     }
-
-
 }

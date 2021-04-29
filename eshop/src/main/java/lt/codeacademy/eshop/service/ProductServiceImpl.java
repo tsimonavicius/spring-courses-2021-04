@@ -1,5 +1,6 @@
 package lt.codeacademy.eshop.service;
 
+import lombok.extern.slf4j.Slf4j;
 import lt.codeacademy.eshop.exception.ProductNotFoundException;
 import lt.codeacademy.eshop.model.Product;
 import lt.codeacademy.eshop.repository.ProductRepository;
@@ -14,6 +15,7 @@ import java.util.UUID;
  * @author Andrius Baltrunas
  */
 @Service
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
@@ -24,7 +26,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void addProduct(Product product) {
-        productRepository.save(product);
+        try {
+            if (product == null) {
+                return;
+            }
+            productRepository.save(product);
+        } catch (IllegalArgumentException e) {
+            log.error("Cannot create product {}", product);
+        }
     }
 
     @Override
