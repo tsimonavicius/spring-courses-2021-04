@@ -14,7 +14,7 @@
 
     <form method="POST" th:action="@{/prisijungimas}">
         <div class="mb-3">
-            <label class="form-label" for="name">Login name</label>
+            <label class="form-label" for="name" th:text="#{login.name}">Login name</label>
             <input class="form-control" id="name" name="loginName">
         </div>
         <div class="mb-3">

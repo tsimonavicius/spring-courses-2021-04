@@ -14,6 +14,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
+                    .antMatchers("/prisijungimas", "/h2/**").permitAll()
                     .anyRequest()
                     .authenticated()
                     .and()
@@ -24,6 +25,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .usernameParameter("loginName")
                     .passwordParameter("loginPassword")
                     .defaultSuccessUrl("/products", true)
-                    .failureUrl("/prisijungimas?error");
+                    .failureUrl("/prisijungimas?error")
+                    .and()
+                .csrf()
+                    .ignoringAntMatchers("/h2/**")
+                    .and()
+                .headers()
+                    .frameOptions()
+                    .sameOrigin();
+
     }
 }
