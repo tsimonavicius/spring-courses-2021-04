@@ -40,7 +40,7 @@ public class CartController {
                 CartItem::increment,
                 () -> addProductToCart(productId, cart));
 
-        return "redirect:/products";
+        return "redirect:/public/products";
     }
 
     @PostMapping("/private/cart")
@@ -52,7 +52,7 @@ public class CartController {
         redirectAttributes.addFlashAttribute("successMessage",
                 "order.successful");
 
-        return "redirect:/products";
+        return "redirect:/public/products";
     }
 
     private void addProductToCart(UUID productId, Cart cart) {

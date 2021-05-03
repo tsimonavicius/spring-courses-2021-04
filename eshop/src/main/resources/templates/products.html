@@ -20,14 +20,14 @@
 			</thead>
 			<tbody>
 				<tr th:each="product: ${productsPage.content}">
-					<td><a th:href="@{/products/update(id=${product.id})}" th:text="${product.name}"></a></td>
+					<td><a th:href="@{/public/products/update(id=${product.id})}" th:text="${product.name}"></a></td>
 					<td th:text="${product.quantity}"></td>
 					<td th:text="${product.price}"></td>
 					<td><a class="btn btn-outline-secondary"
 						   role="button"
-						   th:href="@{/products/delete(id=${product.id})}"
+						   th:href="@{/public/products/delete(id=${product.id})}"
 						   th:text="#{products.delete}"></a>
-						<form th:action="@{/cart/{id}(id = ${product.id})}" method="POST">
+						<form th:action="@{/public/cart/{id}(id = ${product.id})}" method="POST">
 							<button type="submit" class="btn btn-primary">
 								<i class="fas fa-cart-plus"></i>
 							</button>
