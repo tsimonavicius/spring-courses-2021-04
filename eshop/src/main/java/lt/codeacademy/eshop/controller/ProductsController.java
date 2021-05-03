@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/products")
+@RequestMapping("/public/products")
 @Slf4j
 public class ProductsController {
 

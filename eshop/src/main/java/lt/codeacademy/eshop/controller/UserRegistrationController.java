@@ -17,7 +17,7 @@ import javax.validation.Valid;
  * @author Andrius Baltrunas
  */
 @Controller
-@RequestMapping("/user/registration")
+@RequestMapping("/public/user/registration")
 public class UserRegistrationController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserRegistrationController.class);

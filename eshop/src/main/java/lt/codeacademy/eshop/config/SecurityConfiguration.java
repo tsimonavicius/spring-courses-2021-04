@@ -24,7 +24,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // buzinio logika ir app apsauga
         http
                 .authorizeRequests()
-                    .antMatchers("/prisijungimas").permitAll()
+                    .antMatchers("/prisijungimas", "/public/**").permitAll()
+                    .antMatchers("/private/**").authenticated()
                     .anyRequest()
                     .authenticated()
                     .and()

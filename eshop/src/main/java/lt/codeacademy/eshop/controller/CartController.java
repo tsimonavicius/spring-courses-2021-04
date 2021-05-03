@@ -12,7 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/cart")
 @SessionAttributes("cart")
 public class CartController {
 
@@ -28,13 +27,13 @@ public class CartController {
         return new Cart();
     }
 
-    @GetMapping
+    @GetMapping("/public/cart")
     public String openCart(@ModelAttribute("cart") Cart cart) {
 
         return "cart";
     }
 
-    @PostMapping("/{productId}")
+    @PostMapping("/public/cart/{productId}")
     public String addToCart(@PathVariable UUID productId, @ModelAttribute("cart") Cart cart) {
 
         cart.getCartItem(productId).ifPresentOrElse(
@@ -44,7 +43,7 @@ public class CartController {
         return "redirect:/products";
     }
 
-    @PostMapping
+    @PostMapping("/private/cart")
     public String order(SessionStatus status, RedirectAttributes redirectAttributes) {
         // save to DB...
 
