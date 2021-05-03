@@ -4,12 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Setter
@@ -28,9 +27,12 @@ public class User implements UserDetails {
 
     private String password;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("USER"));
+        return roles;
     }
 
     @Override
