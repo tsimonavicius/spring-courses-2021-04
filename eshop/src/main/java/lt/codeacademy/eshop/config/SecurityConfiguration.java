@@ -2,28 +2,28 @@ package lt.codeacademy.eshop.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.sql.DataSource;
 
 @Configuration
 @Profile("!test")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final String h2ConsolePath;
-    private final DataSource dataSource;
+    private final UserDetailsService userDetailsService;
 
     public SecurityConfiguration(@Value("${spring.h2.console.path:}") String h2ConsolePath,
-                                 DataSource dataSource) {
+                                 UserDetailsService userDetailsService) {
         this.h2ConsolePath = h2ConsolePath;
-        this.dataSource = dataSource;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -59,13 +59,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
         auth
-                .jdbcAuthentication()
-                    .dataSource(dataSource)
-                    .usersByUsernameQuery("SELECT name as username, password, TRUE as enabled FROM Users u WHERE u.name = ?")
-                    .authoritiesByUsernameQuery("SELECT name as username, 'USER' as authority FROM Users u WHERE u.name = ?")
-                    .passwordEncoder(passwordEncoder);
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(encoder());
+    }
+
+    @Bean
+    public PasswordEncoder encoder() {
+
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }
