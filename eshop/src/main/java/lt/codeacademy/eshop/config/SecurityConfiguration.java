@@ -8,15 +8,22 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.sql.DataSource;
 
 @Configuration
 @Profile("!test")
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final String h2ConsolePath;
+    private final DataSource dataSource;
 
-    public SecurityConfiguration(@Value("${spring.h2.console.path:}") String h2ConsolePath) {
+    public SecurityConfiguration(@Value("${spring.h2.console.path:}") String h2ConsolePath,
+                                 DataSource dataSource) {
         this.h2ConsolePath = h2ConsolePath;
+        this.dataSource = dataSource;
     }
 
     @Override
@@ -52,14 +59,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
+        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
         auth
-                .inMemoryAuthentication()
-                    .withUser("user")
-                        .password("{bcrypt}$2y$12$Br2r4h8aQPYrQALiC6FN8OxIKVQxxLynmavjsbhfTQfx5H33avBF.") // pass
-                        .roles("USER")
-                        .and()
-                    .withUser("admin")
-                        .password("{bcrypt}$2y$12$hLSERC4ExpBppkaGQKt7y.7eH7dlNrBaf3EpCwjQYyQuXWD.vj3r2") // admin
-                        .roles("ADMIN");
+                .jdbcAuthentication()
+                    .dataSource(dataSource)
+                    .usersByUsernameQuery("SELECT name as username, password, TRUE as enabled FROM Users u WHERE u.name = ?")
+                    .authoritiesByUsernameQuery("SELECT name as username, 'USER' as authority FROM Users u WHERE u.name = ?")
+                    .passwordEncoder(passwordEncoder);
     }
 }

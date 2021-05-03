@@ -14,3 +14,7 @@ INSERT INTO PRODUCTS (id, name, quantity, price, description) VALUES
     ('7a580a64-a414-40dc-8861-52aa79ff3227', 'C', 50, 999.99, 'Pats geriausias Samsung!'),
     ('7a580a64-a414-40dc-8861-52aa79ff4227', 'd', 50, 999.99, 'Pats geriausias Samsung!'),
     ('7a580a64-a414-40dc-8861-52aa79ff2258', 'Samsung S31', 50, 999.99, 'Pats geriausias Samsung!');
+
+
+INSERT INTO USERS (id, name, password) VALUES
+    ('acf49189-e872-48b0-949e-63d455f4fd86', 'user', '{bcrypt}$2y$12$Asaa8kGQMLq5IQ2LNb2VEeF6zKX4larg/rvALtrzLlJhczyl6teWC')
