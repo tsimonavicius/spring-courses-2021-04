@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -88,9 +89,10 @@ public class ProductsController {
     }
 
     @GetMapping("/delete")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteProduct(@RequestParam UUID id, Model model) {
         productService.delete(id);
-        return "redirect:/products";
+        return "redirect:/public/products";
     }
 
 }
