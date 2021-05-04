@@ -23,9 +23,13 @@ public class User implements UserDetails {
     @Type(type = "uuid-char")
     private UUID id;
 
-    private String name;
+    private String username;
 
     private String password;
+
+    private String name;
+
+    private String surname;
 
     @ManyToMany
     private Set<Role> roles;
@@ -37,7 +41,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return username;
     }
 
     @Override
