@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/layout :: header(#{products.title})">
 </head>
 <body>
@@ -23,10 +25,13 @@
 					<td><a th:href="@{/public/products/update(id=${product.id})}" th:text="${product.name}"></a></td>
 					<td th:text="${product.quantity}"></td>
 					<td th:text="${product.price}"></td>
-					<td><a class="btn btn-outline-secondary"
-						   role="button"
-						   th:href="@{/public/products/delete(id=${product.id})}"
-						   th:text="#{products.delete}"></a>
+					<td>
+						<div sec:authorize="hasRole('ADMIN')">
+							<a class="btn btn-outline-secondary"
+							   role="button"
+							   th:href="@{/public/products/delete(id=${product.id})}"
+							   th:text="#{products.delete}"></a>
+						</div>
 						<form th:action="@{/public/cart/{id}(id = ${product.id})}" method="POST">
 							<button type="submit" class="btn btn-primary">
 								<i class="fas fa-cart-plus"></i>
