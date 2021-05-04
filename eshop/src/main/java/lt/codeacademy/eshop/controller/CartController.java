@@ -3,12 +3,17 @@ package lt.codeacademy.eshop.controller;
 import lt.codeacademy.eshop.model.Cart;
 import lt.codeacademy.eshop.model.CartItem;
 import lt.codeacademy.eshop.model.Product;
+import lt.codeacademy.eshop.model.User;
 import lt.codeacademy.eshop.service.ProductService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.UUID;
 
 @Controller
@@ -28,7 +33,10 @@ public class CartController {
     }
 
     @GetMapping("/public/cart")
-    public String openCart(@ModelAttribute("cart") Cart cart) {
+    public String openCart(@ModelAttribute("cart") Cart cart, @AuthenticationPrincipal User user,
+    Principal principal, Authentication authentication) {
+
+        SecurityContextHolder.getContext().getAuthentication();
 
         return "cart";
     }
