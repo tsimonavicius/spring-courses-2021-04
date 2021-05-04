@@ -38,6 +38,11 @@
                 <li th:replace="this :: language"></li>
             </ul>
         </div>
+        <div>
+            <a class="nav-link"
+               th:href="@{/prisijungimas}"
+               th:text="#{navbar.login}"></a>
+        </div>
     </div>
 </nav>
 
