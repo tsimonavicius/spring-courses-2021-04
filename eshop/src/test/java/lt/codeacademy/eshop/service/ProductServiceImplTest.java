@@ -113,9 +113,4 @@ class ProductServiceImplTest {
 
         verify(productRepository, times(1)).deleteById(uuid);
     }
-
-
-    /*private Product getFakeProduct(){
-        return new Product();
-    }*/
 }
