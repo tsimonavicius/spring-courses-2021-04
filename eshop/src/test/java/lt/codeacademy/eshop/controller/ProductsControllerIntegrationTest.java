@@ -1,6 +1,7 @@
 package lt.codeacademy.eshop.controller;
 
 import lt.codeacademy.eshop.model.Product;
+import lt.codeacademy.eshop.service.MessageService;
 import lt.codeacademy.eshop.service.ProductService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,16 +14,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.test.context.support.WithAnonymousUser;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -30,23 +29,25 @@ import java.util.Map;
  * @author Andrius Baltrunas
  */
 @WebMvcTest(ProductsController.class)
-@WithMockUser(roles = "{ADMIN}")
 public class ProductsControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private DataSource dataSource;
+    private UserDetailsService userDetailsService;
+
+    @MockBean
+    private MessageService messageService;
 
     @MockBean
     @Qualifier("productServiceImpl")
     private ProductService productService;
 
-    //TODO fix this test
-   // @Test
+    @Test
     public void testGetProductsWhenOneProductExist() throws Exception {
-        Page<Product> page = new PageImpl<>(List.of(new Product()));
+        Product product = new Product(null, "vienaragis", 1, BigDecimal.valueOf(25.5), "Vienaragio descriptionas");
+        Page<Product> page = new PageImpl<>(List.of());
 
         Mockito.when(productService.getProductsPaginated(ArgumentMatchers.any(Pageable.class))).thenReturn(page);
 
@@ -66,5 +67,4 @@ public class ProductsControllerIntegrationTest {
         Assertions.assertNotNull(result);
         Assertions.assertEquals(page, result);
     }
-
 }
