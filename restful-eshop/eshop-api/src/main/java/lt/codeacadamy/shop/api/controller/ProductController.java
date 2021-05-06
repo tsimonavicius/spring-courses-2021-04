@@ -41,5 +41,4 @@ public class ProductController {
     public List<Product> searchProducts(@RequestParam String query) {
         return productService.findProducts(query);
     }
-
 }
