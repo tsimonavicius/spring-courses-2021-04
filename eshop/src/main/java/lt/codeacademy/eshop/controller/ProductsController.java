@@ -8,16 +8,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -95,4 +94,16 @@ public class ProductsController {
         return "redirect:/public/products";
     }
 
+    @ResponseBody
+    @GetMapping(value = "/json", produces = MediaType.APPLICATION_JSON_VALUE) // by default produces JSON MIME type
+   // @GetMapping("/json")
+    public List<Product> getJsonProducts() {
+        return productService.getProducts();
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/xml", produces = MediaType.APPLICATION_XML_VALUE)
+    public List<Product> getXmlProducts() {
+        return productService.getProducts();
+    }
 }
