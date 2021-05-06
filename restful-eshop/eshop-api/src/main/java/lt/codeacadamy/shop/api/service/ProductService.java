@@ -63,19 +63,20 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
 
-    //TODO think about Query or JPA
     public List<Product> findProducts(String query) {
 
         if (query == null || query.length() == 0) {
             return Collections.emptyList();
         }
 
-        return productRepository.findAll().stream()
+       /* return productRepository.findAll().stream()
                 .filter(findByQuery(query))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
+
+        return productRepository.findByNameLikeOrDescriptionLike("%"+query+"%", "%"+query+"%");
     }
 
-    private Predicate<Product> findByQuery(String query) {
+    /*private Predicate<Product> findByQuery(String query) {
         return p -> p.getName().contains(query) || p.getDescription().contains(query);
-    }
+    }*/
 }
