@@ -13,7 +13,7 @@ public interface Endpoint {
     String PRODUCTS = "/products";
     String PRODUCT = "/{" + UUID + "}";
     String PRODUCT_BY_NAME = "/{" + NAME + "}/name";
-    String EPPOYER_ADDRES = "/{" + NAME + "}/name";
+    String SEARCH = "/search";
 
 
 }

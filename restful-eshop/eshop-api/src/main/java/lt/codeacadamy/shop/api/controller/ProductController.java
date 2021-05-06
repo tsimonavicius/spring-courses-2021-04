@@ -4,10 +4,7 @@ import lt.codeacadamy.shop.api.Endpoint;
 import lt.codeacadamy.shop.api.entity.Product;
 import lt.codeacadamy.shop.api.service.ProductService;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -39,4 +36,10 @@ public class ProductController {
     public Product getProductByName(@PathVariable String name) {
         return productService.getByName(name);
     }
+
+    @GetMapping(value = Endpoint.SEARCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Product> searchProducts(@RequestParam String query) {
+        return productService.findProducts(query);
+    }
+
 }

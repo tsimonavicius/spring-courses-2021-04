@@ -8,8 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author Andrius Baltrunas
@@ -58,5 +61,21 @@ public class ProductService {
 
     public Page<Product> getProductsPaginated(Pageable pageable) {
         return productRepository.findAll(pageable);
+    }
+
+    //TODO think about Query or JPA
+    public List<Product> findProducts(String query) {
+
+        if (query == null || query.length() == 0) {
+            return Collections.emptyList();
+        }
+
+        return productRepository.findAll().stream()
+                .filter(findByQuery(query))
+                .collect(Collectors.toList());
+    }
+
+    private Predicate<Product> findByQuery(String query) {
+        return p -> p.getName().contains(query) || p.getDescription().contains(query);
     }
 }
