@@ -22,7 +22,7 @@ class HelloWorld extends React.Component {
 				<div>
 					Hello,
 					<strong>
-						<span>{this.state.name} {this.state.surname}</span>
+						<span className="red">{this.state.name} {this.state.surname}</span>
 					</strong>
 					, from Class Component!
 				</div>
