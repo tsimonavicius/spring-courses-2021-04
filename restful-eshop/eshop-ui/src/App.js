@@ -4,7 +4,10 @@ function App() {
 	return (
 		<div className="App">
 			<h1>Hello, World!</h1>
-			<HelloWorld name="World" surname="Surname"/>
+			<HelloWorld user={{
+				name: "World",
+				surname: "Surname"
+			}} />
 		</div>
 	);
 }

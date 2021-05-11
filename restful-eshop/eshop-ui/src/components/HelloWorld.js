@@ -3,7 +3,7 @@ const HelloWorld = (props) => (
 	<div>
 		Hello,
 		<strong>
-			<span>{props.name} {props.surname}</span>
+			<span>{props.user.name} {props.user.surname}</span>
 		</strong>
 		, from Component!
 	</div>
