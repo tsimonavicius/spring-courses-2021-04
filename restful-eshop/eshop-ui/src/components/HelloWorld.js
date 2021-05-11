@@ -1,6 +1,12 @@
 
-const HelloWorld = () => {
-	return <h2>Hello, World, from Component!</h2>
-}
+const HelloWorld = () => (
+	<div>
+		Hello,
+		<strong>
+			<span>World</span>
+		</strong>
+		, from Component!
+	</div>
+)
 
 export default HelloWorld;
