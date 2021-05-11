@@ -1,9 +1,9 @@
 
-const HelloWorld = () => (
+const HelloWorld = (props) => (
 	<div>
 		Hello,
 		<strong>
-			<span>World</span>
+			<span>{props.name} {props.surname}</span>
 		</strong>
 		, from Component!
 	</div>
