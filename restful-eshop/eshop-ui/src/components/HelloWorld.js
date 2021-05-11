@@ -1,12 +1,35 @@
+import React from "react";
 
-const HelloWorld = (props) => (
-	<div>
-		Hello,
-		<strong>
-			<span>{props.user.name} {props.user.surname}</span>
-		</strong>
-		, from Component!
-	</div>
-)
+class HelloWorld extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {...props.user}
+	}
+
+	onChange = (e) => {
+		console.log("Event:", e)
+		console.log("Value:", e.target.value)
+
+		this.setState({
+			...this.state,
+			name: e.target.value
+		})
+	}
+
+	render() {
+		return (
+			<>
+				<div>
+					Hello,
+					<strong>
+						<span>{this.state.name} {this.state.surname}</span>
+					</strong>
+					, from Class Component!
+				</div>
+				<input onChange={this.onChange} value={this.state.name}/>
+			</>
+		)
+	}
+}
 
 export default HelloWorld;
