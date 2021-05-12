@@ -11,7 +11,7 @@ export default class Item extends React.Component {
         }
     }
 
-    onHandlingAddQuantity() {
+    onHandlingAddQuantity = () => {
         let { quantity } = this.state;
        // const quantity = this.state.quantity;
         //const text = this.state.text;
@@ -30,7 +30,7 @@ export default class Item extends React.Component {
                                aria-label="Recipient's username with two button addons"/>
                         <button className="btn btn-outline-secondary"
                                 type="button"
-                                onClick={() => this.onHandlingAddQuantity()}>Add</button>
+                                onClick={this.onHandlingAddQuantity}>Add</button>
                     </div>
                 </div>
             </>
