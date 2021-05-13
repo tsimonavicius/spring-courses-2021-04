@@ -15,7 +15,7 @@ function App() {
 			}} />
 			<ItemUncontrolledComponent/>*/}
 			<Items/>
-			<CreateProduct/>
+			{/*<CreateProduct/>*/}
 		</div>
 	);
 }

@@ -21,6 +21,10 @@ export default class Item extends React.Component {
                                 type="button"
                                 onClick={() => this.props.onHandlingRemoveQuantity(this.props.item)}>-
                         </button>
+                        <button className="btn btn-outline-danger"
+                                type="button"
+                                onClick={() => this.props.onHandlingDeleteItem(this.props.item.id)}>Delete
+                        </button>
                     </div>
                     {
                         this.props.item.isItemTextVisible && <ItemText item={this.props.item}

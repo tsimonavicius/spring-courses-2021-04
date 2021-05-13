@@ -58,6 +58,11 @@ export default class Items extends React.Component {
         this.setState({items});
     }
 
+    onHandlingDeleteItem = (id) => {
+        const items = this.state.items.filter(item => item.id !== id);
+        this.setState({items});
+    }
+
     render() {
         return (
             <>
@@ -68,7 +73,8 @@ export default class Items extends React.Component {
                                                        onHandlingItemText={this.onHandlingItemText}
                                                        onHandlingAddQuantity={this.onHandlingAddQuantity}
                                                        onHandlingRemoveQuantity={this.onHandlingRemoveQty}
-                                                       onHandlingHideText={this.onHandlingHideText}/>)
+                                                       onHandlingHideText={this.onHandlingHideText}
+                                                       onHandlingDeleteItem={this.onHandlingDeleteItem}/>)
                 }
             </>
         );
