@@ -22,7 +22,6 @@ export default class Item extends React.Component {
                                 onClick={() => this.props.onHandlingRemoveQuantity(this.props.item)}>-
                         </button>
                     </div>
-                    {/*{this.props.item.text.length > 0 && <span>{this.props.item.text}</span>}*/}
                     {
                         this.props.item.isItemTextVisible && <ItemText item={this.props.item}
                                   onHandlingHideText={this.props.onHandlingHideText}/>

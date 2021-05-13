@@ -1,5 +1,6 @@
 import React from "react";
 import Item from "./Item";
+import ItemLifeCycleHooks from "./ItemLifeCycleHooks";
 
 export default class Items extends React.Component {
 
@@ -60,6 +61,7 @@ export default class Items extends React.Component {
     render() {
         return (
             <>
+                <ItemLifeCycleHooks timeOut={2000}/>
                 {
                     this.state.items.map(item => <Item key={item.id}
                                                        item={item}
