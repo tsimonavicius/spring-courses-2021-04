@@ -8,10 +8,10 @@ export default class Items extends React.Component {
 
         this.state = {
             items: [
-                {id: 1, text: '', quantity: 0},
-                {id: 2, text: '', quantity: 0},
-                {id: 3, text: '', quantity: 0},
-                {id: 4, text: '', quantity: 0}
+                {id: 1, text: '', quantity: 0, isItemTextVisible: false},
+                {id: 2, text: '', quantity: 0, isItemTextVisible: false},
+                {id: 3, text: '', quantity: 0, isItemTextVisible: false},
+                {id: 4, text: '', quantity: 0, isItemTextVisible: false}
             ]
         }
     }
@@ -38,6 +38,18 @@ export default class Items extends React.Component {
         const items = this.state.items.map(item => {
             if (item.id === id) {
                 item.text = event.target.value;
+                item.isItemTextVisible = true;
+            }
+            return item;
+        });
+
+        this.setState({items});
+    }
+
+    onHandlingHideText = (id) => {
+        const items = this.state.items.map(item => {
+            if (item.id === id) {
+                item.isItemTextVisible = false;
             }
             return item;
         });
@@ -53,7 +65,8 @@ export default class Items extends React.Component {
                                                        item={item}
                                                        onHandlingItemText={this.onHandlingItemText}
                                                        onHandlingAddQuantity={this.onHandlingAddQuantity}
-                                                       onHandlingRemoveQuantity={this.onHandlingRemoveQty}/>)
+                                                       onHandlingRemoveQuantity={this.onHandlingRemoveQty}
+                                                       onHandlingHideText={this.onHandlingHideText}/>)
                 }
             </>
         );

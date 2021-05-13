@@ -1,11 +1,13 @@
 import React from "react";
 import ItemBadge from "./ItemBadge";
+import ItemText from "./ItemText";
 
 export default class Item extends React.Component {
+
     render() {
         return (
             <>
-                <div className="col-3">
+                <div className="col-5">
                     <div className="input-group col-sm-6">
                         <ItemBadge quantity={this.props.item.quantity}/>
                         <input type="text" className="form-control" placeholder="Recipient's username"
@@ -20,7 +22,11 @@ export default class Item extends React.Component {
                                 onClick={() => this.props.onHandlingRemoveQuantity(this.props.item)}>-
                         </button>
                     </div>
-                    {this.props.item.text.length > 0 && <span>{this.props.item.text}</span>}
+                    {/*{this.props.item.text.length > 0 && <span>{this.props.item.text}</span>}*/}
+                    {
+                        this.props.item.isItemTextVisible && <ItemText item={this.props.item}
+                                  onHandlingHideText={this.props.onHandlingHideText}/>
+                    }
                 </div>
             </>
         );
