@@ -1,6 +1,7 @@
 import React from "react";
 import Item from "./Item";
 import ItemLifeCycleHooks from "./ItemLifeCycleHooks";
+import ItemsActions from "./ItemsActions";
 
 export default class Items extends React.Component {
 
@@ -63,6 +64,33 @@ export default class Items extends React.Component {
         this.setState({items});
     }
 
+    onHandlingAddItem = () => {
+        const items = [...this.state.items];
+        let max = 0;
+
+        if (items && items.length > 0) {
+            max = items[0].id;
+            for (let i = 1, len = items.length; i < len; i++) {
+               if(items[i].id > max){
+                   max= items[i].id;
+               }
+            }
+        }
+
+        items.push({id: max + 1, text: '', quantity: 0, isItemTextVisible: false});
+
+        this.setState({items});
+    }
+
+    onHandlingResetQuantity = () => {
+        const items = this.state.items.map(item => {
+            item.quantity = 0;
+            return item;
+        })
+
+        this.setState({items});
+    }
+
     render() {
         return (
             <>
@@ -76,6 +104,8 @@ export default class Items extends React.Component {
                                                        onHandlingHideText={this.onHandlingHideText}
                                                        onHandlingDeleteItem={this.onHandlingDeleteItem}/>)
                 }
+                <ItemsActions onHandlingAddItem={this.onHandlingAddItem}
+                              onHandlingResetQuantity={this.onHandlingResetQuantity}/>
             </>
         );
     }
