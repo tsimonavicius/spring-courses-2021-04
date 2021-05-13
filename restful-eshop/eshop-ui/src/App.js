@@ -3,6 +3,7 @@ import "./style.css"
 import ItemUncontrolledComponent from "./components/examples/uncontrolled/ItemUncontrolledComponent";
 import Item from "./components/examples/controlled/Item";
 import Items from "./components/examples/controlled/Items";
+import CreateProduct from "./components/examples/uncontrolled/CreateProduct";
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 			}} />
 			<ItemUncontrolledComponent/>*/}
 			<Items/>
+			<CreateProduct/>
 		</div>
 	);
 }
