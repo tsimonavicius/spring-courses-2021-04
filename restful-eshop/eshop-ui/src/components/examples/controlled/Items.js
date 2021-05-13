@@ -2,6 +2,7 @@ import React from "react";
 import Item from "./Item";
 import ItemLifeCycleHooks from "./ItemLifeCycleHooks";
 import ItemsActions from "./ItemsActions";
+import ItemHeader from "./ItemHeader";
 
 export default class Items extends React.Component {
 
@@ -14,7 +15,8 @@ export default class Items extends React.Component {
                 {id: 2, text: '', quantity: 0, isItemTextVisible: false},
                 {id: 3, text: '', quantity: 0, isItemTextVisible: false},
                 {id: 4, text: '', quantity: 0, isItemTextVisible: false}
-            ]
+            ],
+            totalCount: 0
         }
     }
 
@@ -25,6 +27,8 @@ export default class Items extends React.Component {
         items[index].quantity++;
 
         this.setState({items});
+
+        this.updateTotalCount();
     }
 
     onHandlingRemoveQty = (item) => {
@@ -34,6 +38,8 @@ export default class Items extends React.Component {
         items[index].quantity--;
 
         this.setState({items});
+
+        this.updateTotalCount();
     }
 
     onHandlingItemText = (event, id) => {
@@ -62,6 +68,8 @@ export default class Items extends React.Component {
     onHandlingDeleteItem = (id) => {
         const items = this.state.items.filter(item => item.id !== id);
         this.setState({items});
+
+        this.updateTotalCount();
     }
 
     onHandlingAddItem = () => {
@@ -71,9 +79,9 @@ export default class Items extends React.Component {
         if (items && items.length > 0) {
             max = items[0].id;
             for (let i = 1, len = items.length; i < len; i++) {
-               if(items[i].id > max){
-                   max= items[i].id;
-               }
+                if (items[i].id > max) {
+                    max = items[i].id;
+                }
             }
         }
 
@@ -89,11 +97,25 @@ export default class Items extends React.Component {
         })
 
         this.setState({items});
+
+        this.updateTotalCount();
+    }
+
+    updateTotalCount() {
+        setTimeout(() => {
+            let totalCount = 0;
+            const {items} = this.state;
+            for (let i = 0, len = items.length; i < len; i++) {
+                totalCount += items[i].quantity;
+            }
+            this.setState({totalCount});
+        }, 0);
     }
 
     render() {
         return (
             <>
+                <ItemHeader totalCount={this.state.totalCount}/>
                 <ItemLifeCycleHooks timeOut={2000}/>
                 {
                     this.state.items.map(item => <Item key={item.id}
