@@ -1,5 +1,6 @@
 package lt.codeacadamy.shop.api.controller;
 
+import io.swagger.annotations.Api;
 import lt.codeacadamy.shop.api.Endpoint;
 import lt.codeacadamy.shop.api.entity.Product;
 import lt.codeacadamy.shop.api.service.ProductService;
@@ -14,6 +15,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping(Endpoint.API_ROOT + Endpoint.PRODUCTS)
+@Api(tags = "This is Product controller")
 public class ProductController {
 
     private final ProductService productService;
