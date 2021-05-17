@@ -84,4 +84,28 @@ public class ProductController {
     public void createProduct(@Valid @RequestBody Product product) {
         productService.addProduct(product);
     }
+
+    @DeleteMapping(value = Endpoint.PRODUCT)
+    @ApiOperation(value = "Delete product", httpMethod = "DELETE")
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "Kai sekmingai istrinamas produktas"),
+            @ApiResponse(code = 403, message = "Neturit permisionu gauti atsakymas"),
+            @ApiResponse(code = 401, message = "Prisijunkite jei norit gauti atsakyma")
+    })
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable(Endpoint.UUID) UUID uuid) {
+        productService.delete(uuid);
+    }
+
+    @PutMapping
+    @ApiOperation(value = "Update product", httpMethod = "PUT")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Kai sekmingai atnaujinamas produktas"),
+            @ApiResponse(code = 403, message = "Neturit permisionu gauti atsakymas"),
+            @ApiResponse(code = 401, message = "Prisijunkite jei norit gauti atsakyma")
+    })
+    public Product updateProduct(@Valid @RequestBody Product product){
+        return productService.update(product);
+    }
+
 }

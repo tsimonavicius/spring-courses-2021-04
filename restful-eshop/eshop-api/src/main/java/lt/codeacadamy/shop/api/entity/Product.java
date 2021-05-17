@@ -35,12 +35,12 @@ public class Product {
     @PositiveOrZero
     @Max(1000)
     @NotNull
-    //@ApiModelProperty(notes = "Product quantity", required = true, name = "quantity")
+    @ApiModelProperty(notes = "Product quantity", required = true, name = "quantity", value = "")
     private Integer quantity;
 
     @Positive
     @NotNull
-    //@ApiModelProperty(notes = "Product price", required = true, name = "price")
+    @ApiModelProperty(notes = "Product price", required = true, name = "price", value = "")
     private BigDecimal price;
 
     @Size(max = 255)

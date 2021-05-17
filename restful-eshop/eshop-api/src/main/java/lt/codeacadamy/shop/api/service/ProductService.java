@@ -47,8 +47,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void update(Product product) {
-        productRepository.save(product);
+    public Product update(Product product) {
+        return productRepository.save(product);
     }
 
     public void delete(UUID id) {
