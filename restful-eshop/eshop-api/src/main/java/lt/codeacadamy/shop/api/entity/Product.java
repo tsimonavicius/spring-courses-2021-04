@@ -24,7 +24,7 @@ public class Product {
     @GeneratedValue
     @Column(columnDefinition = "VARCHAR(36)", updatable = false)
     @Type(type = "uuid-char")
-    @ApiModelProperty(notes = "Product UUID", required = true, value = "UUID default value", name = "id")
+    @ApiModelProperty(notes = "Product UUID", value = "UUID default value", name = "id")
     private UUID id;
 
     @NotBlank
@@ -35,12 +35,12 @@ public class Product {
     @PositiveOrZero
     @Max(1000)
     @NotNull
-    @ApiModelProperty(notes = "Product quantity", required = true, value = "1", name = "quantity")
+    //@ApiModelProperty(notes = "Product quantity", required = true, name = "quantity")
     private Integer quantity;
 
     @Positive
     @NotNull
-    @ApiModelProperty(notes = "Product price", required = true, value = "10", name = "price")
+    //@ApiModelProperty(notes = "Product price", required = true, name = "price")
     private BigDecimal price;
 
     @Size(max = 255)
