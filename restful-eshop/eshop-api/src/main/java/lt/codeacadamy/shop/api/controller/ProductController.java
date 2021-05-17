@@ -1,6 +1,9 @@
 package lt.codeacadamy.shop.api.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lt.codeacadamy.shop.api.Endpoint;
 import lt.codeacadamy.shop.api.entity.Product;
 import lt.codeacadamy.shop.api.service.ProductService;
@@ -25,6 +28,12 @@ public class ProductController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Get all product", tags = "getProducts", httpMethod = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Kai sekmingai grazina produktus"),
+            @ApiResponse(code = 403, message = "Neturit permisionu gauti atsakymas"),
+            @ApiResponse(code = 401, message = "Prisijunkite jei norit gauti atsakyma")
+    })
     public List<Product> getProducts() {
         return productService.getProducts();
     }
