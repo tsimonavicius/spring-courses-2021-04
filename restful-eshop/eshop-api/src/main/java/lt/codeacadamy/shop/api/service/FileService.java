@@ -36,7 +36,7 @@ public class FileService {
     }
 
     private String getUniqueFileName(MultipartFile file) {
-        return String.format("%s_%s", file.getOriginalFilename(), LocalDateTime.now().getNano());
+        return String.format("%s_%s", LocalDateTime.now().getNano(), file.getOriginalFilename());
     }
 
     private void createDirectory() {
