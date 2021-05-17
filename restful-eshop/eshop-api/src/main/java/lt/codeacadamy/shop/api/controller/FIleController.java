@@ -3,10 +3,11 @@ package lt.codeacadamy.shop.api.controller;
 import io.swagger.annotations.Api;
 import lt.codeacadamy.shop.api.Endpoint;
 import lt.codeacadamy.shop.api.service.FileService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -26,4 +27,15 @@ public class FIleController {
     public void saveFileInFileSystem(@RequestParam MultipartFile multipartFile) {
         fileService.saveFileInFileSystem(multipartFile);
     }
+
+    @GetMapping(Endpoint.FILE_BY_NAME)
+    public ResponseEntity<Resource> getFileByNameFromFileSystems(@PathVariable String name) {
+
+        Resource resource = new InputStreamResource(fileService.getFileByNameFromFileSystem(name));
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_PNG)
+                .body(resource);
+    }
+
 }
