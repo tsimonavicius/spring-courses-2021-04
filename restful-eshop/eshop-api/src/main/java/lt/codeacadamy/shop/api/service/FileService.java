@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
 
 /**
  * @author Andrius Baltrunas
@@ -27,11 +28,15 @@ public class FileService {
         createDirectory();
 
         try {
-            Path newFilePath = fileLocation.resolve(multipartFile.getOriginalFilename());
+            Path newFilePath = fileLocation.resolve(getUniqueFileName(multipartFile));
             Files.copy(multipartFile.getInputStream(), newFilePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             log.error("Cannot create file ", e);
         }
+    }
+
+    private String getUniqueFileName(MultipartFile file) {
+        return String.format("%s_%s", file.getOriginalFilename(), LocalDateTime.now().getNano());
     }
 
     private void createDirectory() {
