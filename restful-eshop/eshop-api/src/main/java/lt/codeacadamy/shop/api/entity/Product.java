@@ -1,5 +1,6 @@
 package lt.codeacadamy.shop.api.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,21 +24,26 @@ public class Product {
     @GeneratedValue
     @Column(columnDefinition = "VARCHAR(36)", updatable = false)
     @Type(type = "uuid-char")
+    @ApiModelProperty(notes = "Product UUID", required = true, value = "UUID default value", name = "id")
     private UUID id;
 
     @NotBlank
     @Size(min = 3, max = 50, message = "{validation.size.name}")
+    @ApiModelProperty(notes = "Product name", required = true, value = "default name", name = "name")
     private String name;
 
     @PositiveOrZero
     @Max(1000)
     @NotNull
+    @ApiModelProperty(notes = "Product quantity", required = true, value = "1", name = "quantity")
     private Integer quantity;
 
     @Positive
     @NotNull
+    @ApiModelProperty(notes = "Product price", required = true, value = "10", name = "price")
     private BigDecimal price;
 
     @Size(max = 255)
+    @ApiModelProperty(notes = "Product description", required = true, value = "default description", name = "description")
     private String description;
 }
