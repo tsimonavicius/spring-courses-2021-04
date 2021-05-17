@@ -14,6 +14,6 @@ public interface Endpoint {
     String PRODUCT = "/{" + UUID + "}";
     String PRODUCT_BY_NAME = "/{" + NAME + "}/name";
     String SEARCH = "/search";
-
+    String FILE_UPLOAD = "/file/upload";
 
 }
