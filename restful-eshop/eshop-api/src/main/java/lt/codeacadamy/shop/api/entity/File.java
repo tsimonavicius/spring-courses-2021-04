@@ -6,10 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -34,6 +31,9 @@ public class File {
 
     @Column(columnDefinition = "int")
     private long size;
+
+    @Lob
+    private byte[] bytes;
 
     @CreationTimestamp
     private LocalDateTime timestamp = LocalDateTime.now();

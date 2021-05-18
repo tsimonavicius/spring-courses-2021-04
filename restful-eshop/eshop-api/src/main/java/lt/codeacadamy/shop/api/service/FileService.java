@@ -1,7 +1,6 @@
 package lt.codeacadamy.shop.api.service;
 
 import lombok.extern.slf4j.Slf4j;
-import lt.codeacadamy.shop.api.entity.BlobFIle;
 import lt.codeacadamy.shop.api.entity.File;
 import lt.codeacadamy.shop.api.exception.FileException;
 import lt.codeacadamy.shop.api.repository.FileRepository;
@@ -15,7 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
@@ -59,6 +57,24 @@ public class FileService {
         }
     }
 
+    public void saveFileAsBlob(MultipartFile multipartFile) {
+        validateFile(multipartFile);
+
+        try {
+            File file = new File();
+            file.setFileName(multipartFile.getOriginalFilename());
+            file.setBytes(multipartFile.getBytes());
+            file.setSize(multipartFile.getSize());
+            file.setMediaType(multipartFile.getContentType());
+
+            fileRepository.save(file);
+
+        } catch (Exception e) {
+            log.error("Cannot create file", e);
+            throw new FileException("Cannot create file");
+        }
+    }
+
     public InputStream getFileByNameFromFileSystem(String fileName) {
         try {
             File file = fileRepository.findFirstByFileName(fileName);
@@ -69,19 +85,16 @@ public class FileService {
         }
     }
 
-    public BlobFIle getFileByUUID(UUID uuid) {
+    public File getFileByUUID(UUID uuid) {
         try {
             File file = fileRepository.findById(uuid)
                     .orElseThrow(() -> new FileException(String.format("Cannot find file by %s", uuid)));
 
             Path path = fileLocation.resolve(file.getId().toString());
 
-            BlobFIle blobFIle = new BlobFIle();
-            blobFIle.setBytes(Files.readAllBytes(path));
-            blobFIle.setFileName(file.getFileName());
-            blobFIle.setMediaType(file.getMediaType());
+            file.setBytes(Files.readAllBytes(path));
 
-            return blobFIle;
+            return file;
         } catch (Exception e) {
             throw new FileException(String.format("Cannot find file by %s", uuid));
         }

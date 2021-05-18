@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lt.codeacadamy.shop.api.Endpoint;
-import lt.codeacadamy.shop.api.entity.BlobFIle;
+import lt.codeacadamy.shop.api.entity.File;
 import lt.codeacadamy.shop.api.service.FileService;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamResource;
@@ -70,7 +70,7 @@ public class FIleController {
     })
     @GetMapping(Endpoint.FILE_BY_UUID)
     public ResponseEntity<Resource> getFileByUUID(@PathVariable(Endpoint.UUID) UUID uuid) {
-        BlobFIle file = fileService.getFileByUUID(uuid);
+        File file = fileService.getFileByUUID(uuid);
 
         Resource resource = new ByteArrayResource(file.getBytes());
 
