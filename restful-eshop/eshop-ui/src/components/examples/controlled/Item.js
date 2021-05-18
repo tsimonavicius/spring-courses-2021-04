@@ -1,6 +1,19 @@
 import React from "react";
 import ItemBadge from "./ItemBadge";
 import ItemText from "./ItemText";
+import "../../../styles/ItemActionStyles.css";
+import {Button} from "@material-ui/core";
+import {styled} from "@material-ui/styles";
+
+const DeleteButton = styled(Button)({
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+});
 
 export default class Item extends React.Component {
 
@@ -13,18 +26,12 @@ export default class Item extends React.Component {
                         <input type="text" className="form-control" placeholder="Recipient's username"
                                aria-label="Recipient's username with two button addons"
                                onChange={(event) => this.props.onHandlingItemText(event, this.props.item.id)}/>
-                        <button className="btn btn-outline-secondary"
-                                type="button"
-                                onClick={() => this.props.onHandlingAddQuantity(this.props.item)}>+
-                        </button>
-                        <button className="btn btn-outline-secondary"
-                                type="button"
-                                onClick={() => this.props.onHandlingRemoveQuantity(this.props.item)}>-
-                        </button>
-                        <button className="btn btn-outline-danger"
-                                type="button"
-                                onClick={() => this.props.onHandlingDeleteItem(this.props.item.id)}>Delete
-                        </button>
+
+                        <Button className="addButton"
+                                onClick={() => this.props.onHandlingAddQuantity(this.props.item)}>+</Button>
+                        <Button className="removeButton"
+                                onClick={() => this.props.onHandlingRemoveQuantity(this.props.item)}>-</Button>
+                        <DeleteButton onClick={() => this.props.onHandlingDeleteItem(this.props.item.id)}>Delete</DeleteButton>
                     </div>
                     {
                         this.props.item.isItemTextVisible && <ItemText item={this.props.item}

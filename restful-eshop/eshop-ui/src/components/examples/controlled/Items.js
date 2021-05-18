@@ -3,6 +3,7 @@ import Item from "./Item";
 import ItemLifeCycleHooks from "./ItemLifeCycleHooks";
 import ItemsActions from "./ItemsActions";
 import ItemHeader from "./ItemHeader";
+import {StylesProvider} from "@material-ui/styles";
 
 export default class Items extends React.Component {
 
@@ -114,7 +115,7 @@ export default class Items extends React.Component {
 
     render() {
         return (
-            <>
+            <StylesProvider injectFirst>
                 <ItemHeader totalCount={this.state.totalCount}/>
                 <ItemLifeCycleHooks timeOut={2000}/>
                 {
@@ -128,7 +129,7 @@ export default class Items extends React.Component {
                 }
                 <ItemsActions onHandlingAddItem={this.onHandlingAddItem}
                               onHandlingResetQuantity={this.onHandlingResetQuantity}/>
-            </>
+            </StylesProvider>
         );
     }
 }
