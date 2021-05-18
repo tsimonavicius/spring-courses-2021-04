@@ -2,7 +2,7 @@ import React from "react";
 import ItemBadge from "./ItemBadge";
 import ItemText from "./ItemText";
 import "../../../styles/ItemActionStyles.css";
-import {Button} from "@material-ui/core";
+import {Button, TextField} from "@material-ui/core";
 import {styled} from "@material-ui/styles";
 
 const DeleteButton = styled(Button)({
@@ -23,10 +23,10 @@ export default class Item extends React.Component {
                 <div className="col-5">
                     <div className="input-group col-sm-6">
                         <ItemBadge quantity={this.props.item.quantity}/>
-                        <input type="text" className="form-control" placeholder="Recipient's username"
-                               aria-label="Recipient's username with two button addons"
-                               onChange={(event) => this.props.onHandlingItemText(event, this.props.item.id)}/>
-
+                        <TextField id="outlined-basic"
+                                   label="Description"
+                                   variant="outlined"
+                                   onChange={(event) => this.props.onHandlingItemText(event, this.props.item.id)}/>
                         <Button className="addButton"
                                 onClick={() => this.props.onHandlingAddQuantity(this.props.item)}>+</Button>
                         <Button className="removeButton"
