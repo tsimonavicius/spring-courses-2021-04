@@ -44,6 +44,18 @@ public class FIleController {
         fileService.saveFileInFileSystem(multipartFile);
     }
 
+    @ApiOperation(value = "Save image as BLOB", tags = "saveImage", httpMethod = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Kai sekmingai sukuriamas image, kaip BLOB"),
+            @ApiResponse(code = 403, message = "Neturit permisionu gauti atsakymas"),
+            @ApiResponse(code = 401, message = "Prisijunkite jei norit gauti atsakyma")
+    })
+    @PostMapping(Endpoint.FILE_UPLOAD_AS_BLOB)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveFileAsBlob(@RequestParam MultipartFile multipartFile) {
+        fileService.saveFileAsBlob(multipartFile);
+    }
+
     @ApiOperation(value = "Get image by name", tags = "getImage", httpMethod = "GET")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Kai sekmingai grazinamas image"),
