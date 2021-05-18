@@ -5,6 +5,7 @@ import lt.codeacadamy.shop.api.Endpoint;
 import lt.codeacadamy.shop.api.service.FileService;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +34,14 @@ public class FIleController {
 
         Resource resource = new InputStreamResource(fileService.getFileByNameFromFileSystem(name));
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Disposition", "attachment; filename=\"" + name + "\"");
+
+        MediaType mediaType = fileService.getFileMediaTypeByName(name);
+
         return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_PNG)
+                .headers(headers)
+                .contentType(mediaType)
                 .body(resource);
     }
 

@@ -6,7 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.InputStream;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -74,5 +75,11 @@ public class FileService {
         if (!types.contains(file.getContentType())) {
             throw new FileException("File media type not allowed");
         }
+    }
+
+    public MediaType getFileMediaTypeByName(String name) {
+        String type = URLConnection.guessContentTypeFromName(name);
+
+        return MediaType.valueOf(type);
     }
 }
