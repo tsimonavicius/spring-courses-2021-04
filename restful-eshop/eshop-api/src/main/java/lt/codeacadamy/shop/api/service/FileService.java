@@ -1,6 +1,7 @@
 package lt.codeacadamy.shop.api.service;
 
 import lombok.extern.slf4j.Slf4j;
+import lt.codeacadamy.shop.api.entity.BlobFIle;
 import lt.codeacadamy.shop.api.entity.File;
 import lt.codeacadamy.shop.api.exception.FileException;
 import lt.codeacadamy.shop.api.repository.FileRepository;
@@ -8,15 +9,15 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileReader;
 import java.io.InputStream;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * @author Andrius Baltrunas
@@ -65,6 +66,24 @@ public class FileService {
             return Files.newInputStream(path);
         } catch (Exception e) {
             throw new FileException("Cannot get file ");
+        }
+    }
+
+    public BlobFIle getFileByUUID(UUID uuid) {
+        try {
+            File file = fileRepository.findById(uuid)
+                    .orElseThrow(() -> new FileException(String.format("Cannot find file by %s", uuid)));
+
+            Path path = fileLocation.resolve(file.getId().toString());
+
+            BlobFIle blobFIle = new BlobFIle();
+            blobFIle.setBytes(Files.readAllBytes(path));
+            blobFIle.setFileName(file.getFileName());
+            blobFIle.setMediaType(file.getMediaType());
+
+            return blobFIle;
+        } catch (Exception e) {
+            throw new FileException(String.format("Cannot find file by %s", uuid));
         }
     }
 

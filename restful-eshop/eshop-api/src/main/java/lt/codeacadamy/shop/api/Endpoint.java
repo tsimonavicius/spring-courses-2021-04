@@ -16,5 +16,6 @@ public interface Endpoint {
     String SEARCH = "/search";
     String FILE = "/file";
     String FILE_UPLOAD = FILE + "/upload";
-    String FILE_BY_NAME = FILE + "/{" + NAME + "}";
+    String FILE_BY_NAME = FILE + "/NAME/{" + NAME + "}";
+    String FILE_BY_UUID = FILE + "/{" + UUID + "}";
 }
