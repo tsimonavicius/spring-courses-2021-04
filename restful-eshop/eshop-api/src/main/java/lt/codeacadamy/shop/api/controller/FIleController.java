@@ -92,6 +92,24 @@ public class FIleController {
                 .body(resource);
     }
 
+    @ApiOperation(value = "Get image by UUID as BLOB", tags = "getImage", httpMethod = "GET")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Kai sekmingai grazinamas image"),
+            @ApiResponse(code = 403, message = "Neturit permisionu gauti atsakymas"),
+            @ApiResponse(code = 401, message = "Prisijunkite jei norit gauti atsakyma")
+    })
+    @GetMapping(Endpoint.FILE_BY_UUID_AS_BLOB)
+    public ResponseEntity<Resource> getFileByUUIDAsBlob(@PathVariable(Endpoint.UUID) UUID uuid) {
+        File file = fileService.getFileAsBlob(uuid);
+
+        Resource resource = new ByteArrayResource(file.getBytes());
+
+        return ResponseEntity.ok()
+                .headers(getHttpHeader(file.getFileName()))
+                .contentType(MediaType.valueOf(file.getMediaType()))
+                .body(resource);
+    }
+
     private HttpHeaders getHttpHeader(String fileName) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Disposition", "attachment; filename=\"" + fileName + "\"");

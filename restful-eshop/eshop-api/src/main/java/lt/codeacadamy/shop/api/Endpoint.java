@@ -18,6 +18,7 @@ public interface Endpoint {
     String FILE_UPLOAD = FILE + "/upload";
     String FILE_BY_NAME = FILE + "/NAME/{" + NAME + "}";
     String FILE_BY_UUID = FILE + "/{" + UUID + "}";
+    String FILE_BY_UUID_AS_BLOB = FILE + "/{" + UUID + "}/blob";
     String FILE_UPLOAD_AS_BLOB = FILE + "/upload/blob";
 
 }

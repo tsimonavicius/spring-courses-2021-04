@@ -75,6 +75,10 @@ public class FileService {
         }
     }
 
+    public File getFileAsBlob(UUID uuid) {
+        return fileRepository.findById(uuid).orElseThrow(() -> new FileException("File not exist"));
+    }
+
     public InputStream getFileByNameFromFileSystem(String fileName) {
         try {
             File file = fileRepository.findFirstByFileName(fileName);
