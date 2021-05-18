@@ -1,7 +1,9 @@
 package lt.codeacadamy.shop.api.service;
 
 import lombok.extern.slf4j.Slf4j;
+import lt.codeacadamy.shop.api.entity.File;
 import lt.codeacadamy.shop.api.exception.FileException;
+import lt.codeacadamy.shop.api.repository.FileRepository;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +28,11 @@ public class FileService {
     private final Set<String> types;
     private final Path fileLocation;
 
-    public FileService() {
+    private final FileRepository fileRepository;
+
+    public FileService(FileRepository fileRepository) {
+        this.fileRepository = fileRepository;
+
         fileLocation = Paths.get("./files").toAbsolutePath().normalize();
         types = Set.of(MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE, "image/svg+xml");
     }
@@ -36,7 +42,14 @@ public class FileService {
         createDirectory();
 
         try {
-            Path newFilePath = fileLocation.resolve(getUniqueFileName(multipartFile));
+            File file = new File();
+            file.setFileName(multipartFile.getOriginalFilename());
+            file.setMediaType(multipartFile.getContentType());
+            file.setSize(multipartFile.getSize());
+
+            file = fileRepository.save(file);
+
+            Path newFilePath = fileLocation.resolve(file.getId().toString());
             Files.copy(multipartFile.getInputStream(), newFilePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             log.error("Cannot create file ", e);
@@ -50,10 +63,6 @@ public class FileService {
         } catch (Exception e) {
             throw new FileException("Cannot get file ");
         }
-    }
-
-    private String getUniqueFileName(MultipartFile file) {
-        return String.format("%s_%s", LocalDateTime.now().getNano(), file.getOriginalFilename());
     }
 
     private void createDirectory() {
