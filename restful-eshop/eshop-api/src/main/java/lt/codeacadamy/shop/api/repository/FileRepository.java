@@ -9,4 +9,5 @@ import java.util.UUID;
  * @author Andrius Baltrunas
  */
 public interface FileRepository extends JpaRepository<File, UUID> {
+    File findFirstByFileName(String fileName);
 }

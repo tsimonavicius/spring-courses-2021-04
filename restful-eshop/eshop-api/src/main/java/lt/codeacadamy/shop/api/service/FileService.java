@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileReader;
 import java.io.InputStream;
 import java.net.URLConnection;
 import java.nio.file.Files;
@@ -53,12 +54,14 @@ public class FileService {
             Files.copy(multipartFile.getInputStream(), newFilePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (Exception e) {
             log.error("Cannot create file ", e);
+            throw new FileException("Cannot create file");
         }
     }
 
-    public InputStream getFileByNameFromFileSystem(String fileName){
+    public InputStream getFileByNameFromFileSystem(String fileName) {
         try {
-            Path path = fileLocation.resolve(fileName);
+            File file = fileRepository.findFirstByFileName(fileName);
+            Path path = fileLocation.resolve(file.getId().toString());
             return Files.newInputStream(path);
         } catch (Exception e) {
             throw new FileException("Cannot get file ");
