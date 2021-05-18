@@ -4,6 +4,7 @@ import ItemUncontrolledComponent from "./components/examples/uncontrolled/ItemUn
 import Item from "./components/examples/controlled/Item";
 import Items from "./components/examples/controlled/Items";
 import CreateProduct from "./components/examples/uncontrolled/CreateProduct";
+import Content from "./components/Content";
 
 function App() {
 	return (
@@ -14,8 +15,9 @@ function App() {
 				surname: "Surname"
 			}} />
 			<ItemUncontrolledComponent/>*/}
-			<Items/>
+			{/*<Items/>*/}
 			{/*<CreateProduct/>*/}
+			<Content/>
 		</div>
 	);
 }
