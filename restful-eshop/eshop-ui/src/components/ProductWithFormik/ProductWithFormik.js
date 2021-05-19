@@ -1,4 +1,5 @@
-import {Form, Formik} from "formik"
+import {Form, Formik, Field} from "formik"
+import {TextField} from "@material-ui/core";
 
 export default () => (
 	<Formik initialValues={{name: ''}}
@@ -15,7 +16,7 @@ export default () => (
 		{props => (
 			<Form>
 				<label htmlFor="name"/>
-				<input id="name" onChange={props.handleChange}/>
+				<Field id="name" name="name" placeholder="Type..." component={TextField}/>
 
 				{!props.isSubmitting ? <button type="submit">Submit</button> : <span>Submitting...</span>}
 			</Form>
