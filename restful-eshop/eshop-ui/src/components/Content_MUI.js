@@ -13,7 +13,7 @@ import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import Header from "./Header";
+import Header_MUI from "./Header_MUI";
 
 function Copyright() {
     return (
@@ -114,13 +114,13 @@ const footers = [
     },
 ];
 
-export default function Content() {
+export default function Content_MUI() {
     const classes = useStyles();
 
     return (
         <React.Fragment>
             <CssBaseline />
-           <Header/>
+           <Header_MUI/>
             {/* Hero unit */}
             <Container maxWidth="sm" component="main" className={classes.heroContent}>
                 <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>

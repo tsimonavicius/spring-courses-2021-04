@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Header() {
+export default function Header_MUI() {
     const classes = useStyles();
     return (
         <>
