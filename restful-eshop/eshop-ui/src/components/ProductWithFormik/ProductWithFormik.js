@@ -1,4 +1,4 @@
-import {Formik} from "formik"
+import {Form, Formik} from "formik"
 
 export default () => (
 	<Formik initialValues={{name: ''}}
@@ -12,16 +12,14 @@ export default () => (
 					helpers.setSubmitting(false)
 				}, 3000)
 			}}>
-		{props => {
-			console.log("render props", props)
-			return (
-				<form onSubmit={props.handleSubmit}>
-					<label htmlFor="name"/>
-					<input id="name" onChange={props.handleChange}/>
+		{props => (
+			<Form>
+				<label htmlFor="name"/>
+				<input id="name" onChange={props.handleChange}/>
 
-					{!props.isSubmitting ? <button type="submit">Submit</button> : <span>Submitting...</span>}
-				</form>
-			)
-		}}
+				{!props.isSubmitting ? <button type="submit">Submit</button> : <span>Submitting...</span>}
+			</Form>
+		)
+		}
 	</Formik>
 )
