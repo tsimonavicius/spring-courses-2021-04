@@ -1,7 +1,7 @@
 import {ErrorMessage, Field, Form, Formik} from "formik"
 import PropsState from "../PropsState/PropsState"
 import * as Yup from "yup"
-import {FormControl, FormHelperText, Input, InputLabel} from "@material-ui/core";
+import {Container, FormControl, FormHelperText, Input, InputLabel} from "@material-ui/core";
 import FormikInput from "../FormikInput/FormikInput";
 
 const validationSchema = Yup.object().shape({
@@ -39,30 +39,32 @@ export default () => (
 		{props => (
 			<>
 				<PropsState {...props} />
-				<Form>
-					<div>
-						<FormikInput name="name" label="Product name"
-									 error={props.touched.name && !!props.errors.name}/>
-					</div>
+				<Container maxWidth="sm">
+					<Form>
+						<div>
+							<FormikInput name="name" label="Product name"
+										 error={props.touched.name && !!props.errors.name}/>
+						</div>
 
-					<div>
-						<FormikInput name="price" label="Product price"
-									 error={props.touched.price && !!props.errors.price}/>
-					</div>
+						<div>
+							<FormikInput name="price" label="Product price"
+										 error={props.touched.price && !!props.errors.price}/>
+						</div>
 
-					<div>
-						<FormikInput name="quantity" label="Product quantity"
-									 error={props.touched.quantity && !!props.errors.quantity}/>
-					</div>
+						<div>
+							<FormikInput name="quantity" label="Product quantity"
+										 error={props.touched.quantity && !!props.errors.quantity}/>
+						</div>
 
-					<div>
-						<FormikInput name="description" label="Product description"
-									 error={props.touched.description && !!props.errors.description}
-									 multiline rows={3} />
-					</div>
+						<div>
+							<FormikInput name="description" label="Product description"
+										 error={props.touched.description && !!props.errors.description}
+										 multiline rows={3} />
+						</div>
 
-					{!props.isSubmitting ? <button type="submit">Submit</button> : <span>Submitting...</span>}
-				</Form>
+						{!props.isSubmitting ? <button type="submit">Submit</button> : <span>Submitting...</span>}
+					</Form>
+				</Container>
 			</>
 		)}
 	</Formik>
