@@ -1,7 +1,7 @@
 import {Form, Formik} from "formik"
 import PropsState from "../PropsState/PropsState"
 import * as Yup from "yup"
-import {Button, Container, Paper} from "@material-ui/core";
+import {Box, Button, Container, Grid, Paper} from "@material-ui/core";
 import FormikInput from "../FormikInput/FormikInput";
 
 const validationSchema = Yup.object().shape({
@@ -41,32 +41,38 @@ export default () => (
 				<PropsState {...props} />
 				<Container maxWidth="sm">
 					<Paper elevation={3}>
-						<Form style={{margin: 20}}>
-							<div>
-								<FormikInput name="name" label="Product name"
-											 error={props.touched.name && !!props.errors.name}/>
-							</div>
+						<Box p={2}>
+							<Form>
+								<div>
+									<FormikInput name="name" label="Product name"
+												 error={props.touched.name && !!props.errors.name}/>
+								</div>
 
-							<div>
-								<FormikInput name="price" label="Product price"
-											 error={props.touched.price && !!props.errors.price}/>
-							</div>
+								<div>
+									<FormikInput name="price" label="Product price"
+												 error={props.touched.price && !!props.errors.price}/>
+								</div>
 
-							<div>
-								<FormikInput name="quantity" label="Product quantity"
-											 error={props.touched.quantity && !!props.errors.quantity}/>
-							</div>
+								<div>
+									<FormikInput name="quantity" label="Product quantity"
+												 error={props.touched.quantity && !!props.errors.quantity}/>
+								</div>
 
-							<div>
-								<FormikInput name="description" label="Product description"
-											 error={props.touched.description && !!props.errors.description}
-											 multiline rows={3}/>
-							</div>
+								<div>
+									<FormikInput name="description" label="Product description"
+												 error={props.touched.description && !!props.errors.description}
+												 multiline rows={3}/>
+								</div>
 
-							{!props.isSubmitting ?
-								<Button color="primary" variant="contained" type="submit">Submit</Button> :
-								<span>Submitting...</span>}
-						</Form>
+								<Grid align="center" container justify="center" alignItems="center">
+									<Grid item>
+										{!props.isSubmitting ?
+											<Button color="primary" variant="contained" type="submit">Submit</Button> :
+											<span>Submitting...</span>}
+									</Grid>
+								</Grid>
+							</Form>
+						</Box>
 					</Paper>
 				</Container>
 			</>
