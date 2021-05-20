@@ -1,7 +1,7 @@
-import {ErrorMessage, Field, Form, Formik} from "formik"
+import {Form, Formik} from "formik"
 import PropsState from "../PropsState/PropsState"
 import * as Yup from "yup"
-import {Container, FormControl, FormHelperText, Input, InputLabel} from "@material-ui/core";
+import {Button, Container, Paper} from "@material-ui/core";
 import FormikInput from "../FormikInput/FormikInput";
 
 const validationSchema = Yup.object().shape({
@@ -20,11 +20,11 @@ const validationSchema = Yup.object().shape({
 
 export default () => (
 	<Formik initialValues={{
-				name: '',
-				price: '',
-				quantity: '',
-				description: ''
-			}}
+		name: '',
+		price: '',
+		quantity: '',
+		description: ''
+	}}
 			onSubmit={(values, helpers) => {
 				console.log("values", values)
 				console.log("helpers", helpers)
@@ -40,30 +40,34 @@ export default () => (
 			<>
 				<PropsState {...props} />
 				<Container maxWidth="sm">
-					<Form>
-						<div>
-							<FormikInput name="name" label="Product name"
-										 error={props.touched.name && !!props.errors.name}/>
-						</div>
+					<Paper elevation={3}>
+						<Form style={{margin: 20}}>
+							<div>
+								<FormikInput name="name" label="Product name"
+											 error={props.touched.name && !!props.errors.name}/>
+							</div>
 
-						<div>
-							<FormikInput name="price" label="Product price"
-										 error={props.touched.price && !!props.errors.price}/>
-						</div>
+							<div>
+								<FormikInput name="price" label="Product price"
+											 error={props.touched.price && !!props.errors.price}/>
+							</div>
 
-						<div>
-							<FormikInput name="quantity" label="Product quantity"
-										 error={props.touched.quantity && !!props.errors.quantity}/>
-						</div>
+							<div>
+								<FormikInput name="quantity" label="Product quantity"
+											 error={props.touched.quantity && !!props.errors.quantity}/>
+							</div>
 
-						<div>
-							<FormikInput name="description" label="Product description"
-										 error={props.touched.description && !!props.errors.description}
-										 multiline rows={3} />
-						</div>
+							<div>
+								<FormikInput name="description" label="Product description"
+											 error={props.touched.description && !!props.errors.description}
+											 multiline rows={3}/>
+							</div>
 
-						{!props.isSubmitting ? <button type="submit">Submit</button> : <span>Submitting...</span>}
-					</Form>
+							{!props.isSubmitting ?
+								<Button color="primary" variant="contained" type="submit">Submit</Button> :
+								<span>Submitting...</span>}
+						</Form>
+					</Paper>
 				</Container>
 			</>
 		)}
