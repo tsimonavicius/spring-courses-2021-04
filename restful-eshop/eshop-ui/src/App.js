@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
+import {BrowserRouter as Router} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -18,12 +19,14 @@ function App() {
 	const classes = useStyles()
 
 	return (
-		<div className={classes.root}>
-			<CssBaseline />
-			<Header/>
-			<Content/>
-			<Footer/>
-		</div>
+		<Router>
+			<div className={classes.root}>
+				<CssBaseline />
+				<Header/>
+				<Content/>
+				<Footer/>
+			</div>
+		</Router>
 	);
 }
 
