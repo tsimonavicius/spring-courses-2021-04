@@ -1,7 +1,7 @@
 import {ErrorMessage, Field, Form, Formik} from "formik"
 import PropsState from "../PropsState/PropsState"
 import * as Yup from "yup"
-import {Input} from "@material-ui/core";
+import {FormControl, FormHelperText, Input, InputLabel} from "@material-ui/core";
 
 const validationSchema = Yup.object().shape({
 	name: Yup.string()
@@ -34,15 +34,17 @@ export default () => (
 					helpers.setSubmitting(false)
 				}, 3000)
 			}}
-		validationSchema={validationSchema}>
+			validationSchema={validationSchema}>
 		{props => (
 			<>
 				<PropsState {...props} />
 				<Form>
 					<div>
-						<label htmlFor="name">Product title:</label>
-						<Field id="name" name="name" placeholder="Type..." as={Input}/>
-						<ErrorMessage name="name" component="span"/>
+						<FormControl error={props.touched.name && !!props.errors.name}>
+							<InputLabel htmlFor="name">Product name:</InputLabel>
+							<Field id="name" name="name" placeholder="Type..." as={Input}/>
+							<ErrorMessage name="name" component={FormHelperText}/>
+						</FormControl>
 					</div>
 
 					<div>
