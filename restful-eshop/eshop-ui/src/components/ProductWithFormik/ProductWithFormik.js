@@ -1,6 +1,7 @@
 import {ErrorMessage, Field, Form, Formik} from "formik"
-import PropsState from "../PropsState/PropsState";
+import PropsState from "../PropsState/PropsState"
 import * as Yup from "yup"
+import {Input} from "@material-ui/core";
 
 const validationSchema = Yup.object().shape({
 	name: Yup.string()
@@ -40,7 +41,7 @@ export default () => (
 				<Form>
 					<div>
 						<label htmlFor="name">Product title:</label>
-						<Field id="name" name="name" placeholder="Type..."/>
+						<Field id="name" name="name" placeholder="Type..." as={Input}/>
 						<ErrorMessage name="name" component="span"/>
 					</div>
 
