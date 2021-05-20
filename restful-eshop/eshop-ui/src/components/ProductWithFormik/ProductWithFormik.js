@@ -2,6 +2,7 @@ import {ErrorMessage, Field, Form, Formik} from "formik"
 import PropsState from "../PropsState/PropsState"
 import * as Yup from "yup"
 import {FormControl, FormHelperText, Input, InputLabel} from "@material-ui/core";
+import FormikInput from "../FormikInput/FormikInput";
 
 const validationSchema = Yup.object().shape({
 	name: Yup.string()
@@ -40,36 +41,24 @@ export default () => (
 				<PropsState {...props} />
 				<Form>
 					<div>
-						<FormControl error={props.touched.name && !!props.errors.name}>
-							<InputLabel htmlFor="name">Product name</InputLabel>
-							<Field id="name" name="name" placeholder="Type..." as={Input}/>
-							<ErrorMessage name="name" component={FormHelperText}/>
-						</FormControl>
+						<FormikInput name="name" label="Product name"
+									 error={props.touched.name && !!props.errors.name}/>
 					</div>
 
 					<div>
-						<FormControl error={props.touched.price && !!props.errors.price}>
-							<InputLabel htmlFor="price">Product price</InputLabel>
-							<Field id="price" name="price" placeholder="Type..." as={Input}/>
-							<ErrorMessage name="price" component={FormHelperText} />
-						</FormControl>
+						<FormikInput name="price" label="Product price"
+									 error={props.touched.price && !!props.errors.price}/>
 					</div>
 
 					<div>
-						<FormControl error={props.touched.quantity && !!props.errors.quantity}>
-							<InputLabel htmlFor="quantity">Product quantity</InputLabel>
-							<Field id="quantity" name="quantity" placeholder="Type..." as={Input}/>
-							<ErrorMessage name="quantity" component={FormHelperText} />
-						</FormControl>
+						<FormikInput name="quantity" label="Product quantity"
+									 error={props.touched.quantity && !!props.errors.quantity}/>
 					</div>
 
 					<div>
-						<FormControl error={props.touched.description && !!props.errors.description}>
-							<InputLabel htmlFor="price">Product description</InputLabel>
-							<Field id="description" name="description" placeholder="Type..."
-								   multiline rows={3} as={Input}/>
-							<ErrorMessage name="description" component={FormHelperText} />
-						</FormControl>
+						<FormikInput name="description" label="Product description"
+									 error={props.touched.description && !!props.errors.description}
+									 multiline rows={3} />
 					</div>
 
 					{!props.isSubmitting ? <button type="submit">Submit</button> : <span>Submitting...</span>}
