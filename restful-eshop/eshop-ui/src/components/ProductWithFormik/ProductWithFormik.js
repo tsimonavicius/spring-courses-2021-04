@@ -41,28 +41,35 @@ export default () => (
 				<Form>
 					<div>
 						<FormControl error={props.touched.name && !!props.errors.name}>
-							<InputLabel htmlFor="name">Product name:</InputLabel>
+							<InputLabel htmlFor="name">Product name</InputLabel>
 							<Field id="name" name="name" placeholder="Type..." as={Input}/>
 							<ErrorMessage name="name" component={FormHelperText}/>
 						</FormControl>
 					</div>
 
 					<div>
-						<label htmlFor="price">Product price:</label>
-						<Field id="price" name="price" placeholder="Type..."/>
-						<ErrorMessage name="price" component="span"/>
+						<FormControl error={props.touched.price && !!props.errors.price}>
+							<InputLabel htmlFor="price">Product price</InputLabel>
+							<Field id="price" name="price" placeholder="Type..." as={Input}/>
+							<ErrorMessage name="price" component={FormHelperText} />
+						</FormControl>
 					</div>
 
 					<div>
-						<label htmlFor="quantity">Product quantity:</label>
-						<Field id="quantity" name="quantity" placeholder="Type..."/>
-						<ErrorMessage name="quantity" component="span"/>
+						<FormControl error={props.touched.quantity && !!props.errors.quantity}>
+							<InputLabel htmlFor="quantity">Product quantity</InputLabel>
+							<Field id="quantity" name="quantity" placeholder="Type..." as={Input}/>
+							<ErrorMessage name="quantity" component={FormHelperText} />
+						</FormControl>
 					</div>
 
 					<div>
-						<label htmlFor="description">Product quantity:</label>
-						<Field id="description" name="description" placeholder="Type..." component="textarea"/>
-						<ErrorMessage name="description" component="span"/>
+						<FormControl error={props.touched.description && !!props.errors.description}>
+							<InputLabel htmlFor="price">Product description</InputLabel>
+							<Field id="description" name="description" placeholder="Type..."
+								   multiline rows={3} as={Input}/>
+							<ErrorMessage name="description" component={FormHelperText} />
+						</FormControl>
 					</div>
 
 					{!props.isSubmitting ? <button type="submit">Submit</button> : <span>Submitting...</span>}
