@@ -1,12 +1,12 @@
-import Product from "../Product/Product"
-import ProductWithFormik from "../ProductWithFormik/ProductWithFormik";
+import {Switch, Route} from "react-router-dom"
+import LandingPage from "../../pages/LandingPage/LandingPage";
 
 export default () => (
 	<>
-		<h2>Create Product</h2>
-		<Product/>
-		<br/>
-		<h2>Product Form With Formik</h2>
-		<ProductWithFormik/>
+		<Switch>
+			<Route path="/">
+				<LandingPage/>
+			</Route>
+		</Switch>
 	</>
 )
