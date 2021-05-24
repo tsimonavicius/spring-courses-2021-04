@@ -2,12 +2,16 @@ import {Switch, Route} from "react-router-dom"
 import LandingPage from "../../pages/LandingPage/LandingPage";
 import NewProductPage from "../../pages/NewProductPage/NewProductPage";
 import Product from "../../pages/Product/Product";
+import Products from "../../pages/Products/Products";
 
 export default () => (
 	<>
 		<Switch>
 			<Route exact path="/">
 				<LandingPage/>
+			</Route>
+			<Route exact path="/products">
+				<Products/>
 			</Route>
 			<Route path="/products/new">
 				<NewProductPage/>

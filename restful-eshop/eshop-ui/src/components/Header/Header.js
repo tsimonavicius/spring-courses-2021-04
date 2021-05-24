@@ -36,7 +36,7 @@ export default () => {
 						Eshop
 					</Typography>
 					<nav>
-						<Link variant="button" color="textPrimary" to="/products/new"
+						<Link variant="button" color="textPrimary" to="/products"
 							  className={classes.link} activeClassName={classes.active} component={NavLink}>
 							Products
 						</Link>
