@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 	toolbar: {
 		flexWrap: 'wrap',
+	},
+	active: {
+		fontWeight: "bolder",
+		color: "blue"
 	}
 }))
 
@@ -33,7 +37,7 @@ export default () => {
 					</Typography>
 					<nav>
 						<Link variant="button" color="textPrimary" to="/products/new"
-							  className={classes.link} component={NavLink}>
+							  className={classes.link} activeClassName={classes.active} component={NavLink}>
 							Products
 						</Link>
 						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
