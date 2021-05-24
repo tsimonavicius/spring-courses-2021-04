@@ -1,6 +1,15 @@
-import { fetchProducts } from "../../api/productsApi"
+import {fetchProducts} from "../../api/productsApi"
 import {useEffect, useState} from "react";
-import {Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import {
+	CircularProgress,
+	Paper,
+	Table,
+	TableBody,
+	TableCell,
+	TableContainer,
+	TableHead,
+	TableRow
+} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
 
@@ -13,13 +22,14 @@ const useStyle = makeStyles({
 const Products = () => {
 
 	const [products, setProducts] = useState([])
+	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		// componentDidMount && componentDidUpdate
 		fetchProducts()
-			.then(({ data }) => {
+			.then(({data}) => {
 				setProducts(data)
-			})
+			}).finally(() => setLoading(false))
 	}, [])
 
 	const classes = useStyle()
@@ -37,16 +47,22 @@ const Products = () => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{products.map(product => (
-							<TableRow key={product.id}>
-								<TableCell component="th" scope="row">
-									{product.name}
+						{loading ?
+							<TableRow>
+								<TableCell colSpan={4} align="center">
+									<CircularProgress/>
 								</TableCell>
-								<TableCell align="right">{product.quantity}</TableCell>
-								<TableCell align="right">{product.price}</TableCell>
-								<TableCell align="right">{product.description}</TableCell>
-							</TableRow>
-						))}
+							</TableRow> :
+							products.map(product => (
+								<TableRow key={product.id}>
+									<TableCell component="th" scope="row">
+										{product.name}
+									</TableCell>
+									<TableCell align="right">{product.quantity}</TableCell>
+									<TableCell align="right">{product.price}</TableCell>
+									<TableCell align="right">{product.description}</TableCell>
+								</TableRow>
+							))}
 					</TableBody>
 				</Table>
 			</TableContainer>
