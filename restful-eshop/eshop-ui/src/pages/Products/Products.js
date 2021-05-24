@@ -1,16 +1,24 @@
 import { fetchProducts } from "../../api/productsApi"
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const Products = () => {
 
+	const [products, setProducts] = useState([])
+
 	useEffect(() => {
+		// componentDidMount && componentDidUpdate
 		fetchProducts()
-			.then(response => console.log("response", response))
-			.catch(error => console.log("error", error))
-	})
+			.then(({ data }) => {
+				setProducts(data)
+			})
+	}, [])
 
 	return (
-		<h1>Products</h1>
+		<h1>
+			<pre>
+				{JSON.stringify(products, null, 2)}
+			</pre>
+		</h1>
 	)
 }
 
