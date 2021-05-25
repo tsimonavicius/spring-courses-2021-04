@@ -1,5 +1,5 @@
 import {fetchProducts} from "../../api/productsApi"
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {
 	CircularProgress,
 	Paper,
@@ -12,6 +12,8 @@ import {
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
+import {CartContext} from "../../App";
+import Button from "@material-ui/core/Button";
 
 const useStyle = makeStyles({
 	table: {
@@ -24,6 +26,8 @@ const Products = () => {
 	const [products, setProducts] = useState([])
 	const [loading, setLoading] = useState(true)
 
+	const cart = useContext(CartContext)
+
 	useEffect(() => {
 		// componentDidMount && componentDidUpdate
 		fetchProducts()
@@ -33,6 +37,11 @@ const Products = () => {
 	}, [])
 
 	const classes = useStyle()
+
+	const buy = (product) => {
+		cart.push(product)
+		console.log(cart)
+	}
 
 	return (
 		<Container maxWidth="md">
@@ -44,12 +53,13 @@ const Products = () => {
 							<TableCell align="right">Quantity</TableCell>
 							<TableCell align="right">Price (Eur)</TableCell>
 							<TableCell align="right">Description</TableCell>
+							<TableCell align="right">Actions</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{loading ?
 							<TableRow>
-								<TableCell colSpan={4} align="center">
+								<TableCell colSpan={5} align="center">
 									<CircularProgress/>
 								</TableCell>
 							</TableRow> :
@@ -61,6 +71,10 @@ const Products = () => {
 									<TableCell align="right">{product.quantity}</TableCell>
 									<TableCell align="right">{product.price}</TableCell>
 									<TableCell align="right">{product.description}</TableCell>
+									<TableCell align="right">
+										<Button variant="outlined" color="primary"
+											onClick={() => buy(product)}>Buy</Button>
+									</TableCell>
 								</TableRow>
 							))}
 					</TableBody>
