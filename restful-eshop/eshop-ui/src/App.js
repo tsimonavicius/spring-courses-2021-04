@@ -16,7 +16,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CartContext = createContext(null)
-const cart = []
+const cart = [{
+	"id": "acf49189-e872-48b0-949e-63d455f4fd86",
+	"name": "iPhone XM",
+	"quantity": 200,
+	"price": 1599.99,
+	"description": "Naujausias iPhone!"
+}]
 
 function App() {
 	const classes = useStyles()
@@ -32,7 +38,8 @@ function App() {
 				</div>
 			</Router>
 		</CartContext.Provider>
-	);
+	)
 }
 
-export default App;
+export default App
+export { CartContext }

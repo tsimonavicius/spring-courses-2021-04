@@ -43,6 +43,10 @@ export default () => {
 						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
 							Users
 						</Link>
+						<Link variant="button" color="textPrimary" to="/cart"
+							  className={classes.link} activeClassName={classes.active} component={NavLink}>
+							Cart
+						</Link>
 					</nav>
 					<Button href="#" color="primary" variant="outlined" className={classes.link}>
 						Login
