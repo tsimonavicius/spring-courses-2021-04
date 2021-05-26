@@ -43,7 +43,7 @@ const Products = ({ tunedAddToCart }) => {
 
 	const handleOnClick = (product) => {
 		addProduct(product)
-		addToCart(product)
+		tunedAddToCart(product)
 	}
 
 	return (
