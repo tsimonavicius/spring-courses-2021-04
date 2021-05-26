@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 
 const CartPage = () => {
 
-	const products = useContext(CartContext)
+	const { products, removeProduct } = useContext(CartContext)
 
 	return (
 		<Container maxWidth="md">
@@ -32,7 +32,7 @@ const CartPage = () => {
 									<TableCell scope="row">
 										{product.name}
 									</TableCell>
-									<TableCell align="right">1</TableCell>
+									<TableCell align="right">{product.itemCount}</TableCell>
 									<TableCell align="right">{product.price}</TableCell>
 									<TableCell align="right">{product.price * 1}</TableCell>
 								</TableRow>

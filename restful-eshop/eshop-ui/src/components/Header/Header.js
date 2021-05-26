@@ -1,11 +1,12 @@
 import AppBar from "@material-ui/core/AppBar";
-import {Toolbar} from "@material-ui/core";
+import {Badge, Toolbar} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-import React from "react";
+import React, {useContext} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {NavLink} from "react-router-dom";
+import {CartContext} from "../../App";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -28,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default () => {
 	const classes = useStyles()
+
+	const { products } = useContext(CartContext)
+
+	const totalItemsInCart = products.reduce((sum, product) => sum + product.itemCount, 0)
+
 	return (
 		<>
 			<AppBar position="static" color="default" elevation={0} className={classes.appBar}>
@@ -43,10 +49,12 @@ export default () => {
 						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
 							Users
 						</Link>
-						<Link variant="button" color="textPrimary" to="/cart"
-							  className={classes.link} activeClassName={classes.active} component={NavLink}>
-							Cart
-						</Link>
+						<Badge badgeContent={totalItemsInCart} color="secondary" showZero>
+							<Link variant="button" color="textPrimary" to="/cart"
+								  className={classes.link} activeClassName={classes.active} component={NavLink}>
+								Cart
+							</Link>
+						</Badge>
 					</nav>
 					<Button href="#" color="primary" variant="outlined" className={classes.link}>
 						Login

@@ -26,7 +26,7 @@ const Products = () => {
 	const [products, setProducts] = useState([])
 	const [loading, setLoading] = useState(true)
 
-	const cart = useContext(CartContext)
+	const { addProduct } = useContext(CartContext)
 
 	useEffect(() => {
 		// componentDidMount && componentDidUpdate
@@ -37,11 +37,6 @@ const Products = () => {
 	}, [])
 
 	const classes = useStyle()
-
-	const buy = (product) => {
-		cart.push(product)
-		console.log(cart)
-	}
 
 	return (
 		<Container maxWidth="md">
@@ -73,7 +68,7 @@ const Products = () => {
 									<TableCell align="right">{product.description}</TableCell>
 									<TableCell align="right">
 										<Button variant="outlined" color="primary"
-											onClick={() => buy(product)}>Buy</Button>
+											onClick={() => addProduct(product)}>Buy</Button>
 									</TableCell>
 								</TableRow>
 							))}
