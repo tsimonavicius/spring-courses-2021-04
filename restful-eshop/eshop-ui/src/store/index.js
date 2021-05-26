@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {combineReducers, compose, createStore} from "redux";
 import cartReducer from "./slices/cartSlice";
 
 /* store = {
@@ -15,7 +15,9 @@ const rootReducer = combineReducers({
 
 const constructStore = () => {
 
-	return createStore(rootReducer)
+	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+	return createStore(rootReducer, undefined, composeEnhancers())
 }
 
 export default constructStore
