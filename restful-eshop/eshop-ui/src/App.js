@@ -6,6 +6,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import React, {createContext, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {BrowserRouter as Router} from "react-router-dom"
+import constructStore from "./store";
+import {Provider} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -16,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CartContext = createContext(null)
+
+const store = constructStore()
 
 function App() {
 	const classes = useStyles()
@@ -40,18 +44,20 @@ function App() {
 	}
 
 	return (
-		<CartContext.Provider value={cart}>
-			<Router>
-				<div className={classes.root}>
-					<CssBaseline />
-					<Header/>
-					<Content/>
-					<Footer/>
-				</div>
-			</Router>
-		</CartContext.Provider>
+		<Provider store={store}>
+			<CartContext.Provider value={cart}>
+				<Router>
+					<div className={classes.root}>
+						<CssBaseline/>
+						<Header/>
+						<Content/>
+						<Footer/>
+					</div>
+				</Router>
+			</CartContext.Provider>
+		</Provider>
 	)
 }
 
 export default App
-export { CartContext }
+export {CartContext}
