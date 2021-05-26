@@ -14,14 +14,17 @@ import {makeStyles} from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
 import {CartContext} from "../../App";
 import Button from "@material-ui/core/Button";
+import {connect} from "react-redux";
+import {addToCart} from "../../store/slices/cartSlice";
 
 const useStyle = makeStyles({
 	table: {
 		minWidth: 650,
 	}
 })
-
-const Products = () => {
+// props = { addToCart: addToCart }
+// tunedAddToCart = (product) => dispatch(addToCart(product))
+const Products = ({ tunedAddToCart }) => {
 
 	const [products, setProducts] = useState([])
 	const [loading, setLoading] = useState(true)
@@ -37,6 +40,11 @@ const Products = () => {
 	}, [])
 
 	const classes = useStyle()
+
+	const handleOnClick = (product) => {
+		addProduct(product)
+		addToCart(product)
+	}
 
 	return (
 		<Container maxWidth="md">
@@ -68,7 +76,7 @@ const Products = () => {
 									<TableCell align="right">{product.description}</TableCell>
 									<TableCell align="right">
 										<Button variant="outlined" color="primary"
-											onClick={() => addProduct(product)}>Buy</Button>
+											onClick={() => handleOnClick(product)}>Buy</Button>
 									</TableCell>
 								</TableRow>
 							))}
@@ -79,4 +87,13 @@ const Products = () => {
 	)
 }
 
-export default Products
+const mapDispatchToProps = {
+	tunedAddToCart: addToCart
+}
+
+// connect(null, mapDispatchToProps) -> configFn(Component) -> building props... -> Component(props)
+
+const storeBindingFn = connect(null, mapDispatchToProps)
+const ProductsWithStore = storeBindingFn(Products)
+
+export default ProductsWithStore
