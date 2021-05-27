@@ -34,7 +34,7 @@ const CartPage = () => {
 									</TableCell>
 									<TableCell align="right">{product.itemCount}</TableCell>
 									<TableCell align="right">{product.price}</TableCell>
-									<TableCell align="right">{product.price * 1}</TableCell>
+									<TableCell align="right">{product.price * product.itemCount}</TableCell>
 								</TableRow>
 							))}
 					</TableBody>
