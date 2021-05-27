@@ -1,6 +1,6 @@
-import {applyMiddleware, combineReducers, compose, createStore} from "redux";
-import cartReducer from "./slices/cartSlice";
-import {createLogger} from "redux-logger";
+import cart from "./slices/cartSlice";
+import {configureStore} from "@reduxjs/toolkit";
+import {logger} from "redux-logger/src";
 
 /* store = {
 		cart: [...],
@@ -10,19 +10,14 @@ import {createLogger} from "redux-logger";
 	}
 */
 
-const rootReducer = combineReducers({
-	cart: cartReducer
-})
-
 const constructStore = () => {
 
-	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-	return createStore(
-		rootReducer,
-		undefined,
-		composeEnhancers(applyMiddleware(createLogger()))
-	)
+	return configureStore({
+		reducer: {
+			cart
+		},
+		middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
+	})
 }
 
 export default constructStore
