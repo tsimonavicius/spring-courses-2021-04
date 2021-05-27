@@ -1,10 +1,16 @@
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import Container from "@material-ui/core/Container";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import Button from "@material-ui/core/Button";
+import {removeFromCart} from "../../store/slices/cartSlice";
+
 
 const CartPage = () => {
 
 	const products = useSelector(state => state.cart)
+	const dispatch = useDispatch()
+
+	const removeProduct = (id) => dispatch(removeFromCart(id))
 
 	return (
 		<Container maxWidth="md">
@@ -16,6 +22,7 @@ const CartPage = () => {
 							<TableCell align="right">How many?</TableCell>
 							<TableCell align="right">Unit Price (Eur)</TableCell>
 							<TableCell align="right">Total Price (Eur)</TableCell>
+							<TableCell align="right">Actions</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -34,6 +41,10 @@ const CartPage = () => {
 									<TableCell align="right">{product.itemCount}</TableCell>
 									<TableCell align="right">{product.price}</TableCell>
 									<TableCell align="right">{product.price * product.itemCount}</TableCell>
+									<TableCell align="right">
+										<Button variant="outlined" color="primary"
+												onClick={() => removeProduct(product.id)}>Remove</Button>
+									</TableCell>
 								</TableRow>
 							))}
 					</TableBody>
