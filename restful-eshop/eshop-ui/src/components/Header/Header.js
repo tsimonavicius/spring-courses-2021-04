@@ -3,10 +3,10 @@ import {Badge, Toolbar} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-import React, {useContext} from "react";
+import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {NavLink} from "react-router-dom";
-import {CartContext} from "../../App";
+import {useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -30,9 +30,7 @@ const useStyles = makeStyles((theme) => ({
 export default () => {
 	const classes = useStyles()
 
-	const { products } = useContext(CartContext)
-
-	const totalItemsInCart = products.reduce((sum, product) => sum + product.itemCount, 0)
+	const numberOfCartItems = useSelector(state => state.cart.length)
 
 	return (
 		<>
@@ -49,7 +47,7 @@ export default () => {
 						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
 							Users
 						</Link>
-						<Badge badgeContent={totalItemsInCart} color="secondary" showZero>
+						<Badge badgeContent={numberOfCartItems} color="secondary" showZero>
 							<Link variant="button" color="textPrimary" to="/cart"
 								  className={classes.link} activeClassName={classes.active} component={NavLink}>
 								Cart
