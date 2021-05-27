@@ -12,7 +12,6 @@ import {
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import Container from "@material-ui/core/Container";
-import {CartContext} from "../../App";
 import Button from "@material-ui/core/Button";
 import {connect} from "react-redux";
 import {addToCart} from "../../store/slices/cartSlice";
@@ -29,8 +28,6 @@ const Products = ({ tunedAddToCart }) => {
 	const [products, setProducts] = useState([])
 	const [loading, setLoading] = useState(true)
 
-	const { addProduct } = useContext(CartContext)
-
 	useEffect(() => {
 		// componentDidMount && componentDidUpdate
 		fetchProducts()
@@ -42,7 +39,6 @@ const Products = ({ tunedAddToCart }) => {
 	const classes = useStyle()
 
 	const handleOnClick = (product) => {
-		addProduct(product)
 		tunedAddToCart(product)
 	}
 

@@ -33,14 +33,14 @@ const CartPage = () => {
 								</TableCell>
 							</TableRow> :
 
-							products.map(product => (
-								<TableRow key={product.id}>
+							products.map((product, index) => (
+								<TableRow key={index}>
 									<TableCell scope="row">
 										{product.name}
 									</TableCell>
 									<TableCell align="right">{product.itemCount}</TableCell>
 									<TableCell align="right">{product.price}</TableCell>
-									<TableCell align="right">{product.price * product.itemCount}</TableCell>
+									<TableCell align="right">{product.price}</TableCell>
 									<TableCell align="right">
 										<Button variant="outlined" color="primary"
 												onClick={() => removeProduct(product.id)}>Remove</Button>
