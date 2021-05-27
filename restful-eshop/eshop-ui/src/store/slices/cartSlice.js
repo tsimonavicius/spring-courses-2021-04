@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import {saveToLocalStorage} from "../../utils/localStorage";
+import _ from "lodash"
 
 const initialState = []
 
@@ -19,15 +20,16 @@ const cartSlice = createSlice({
 let prevCart = initialState
 
 const subscribeToCartChanges = (store) => {
-	const currentCart = store.getState().cart
+	store.subscribe(
+		_.throttle(() => {
+			const currentCart = store.getState().cart
 
-	if (prevCart !== currentCart) {
+			if (prevCart !== currentCart) {
 
-		prevCart = currentCart
-		store.subscribe(() => {
-			saveToLocalStorage("cart", currentCart)
-		})
-	}
+				prevCart = currentCart
+				saveToLocalStorage("cart", currentCart)
+			}
+	}, 1000))
 }
 
 export default cartSlice.reducer
