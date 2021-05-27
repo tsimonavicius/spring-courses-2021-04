@@ -1,11 +1,10 @@
-import {useContext} from "react";
-import {CartContext} from "../../App";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import Container from "@material-ui/core/Container";
+import {useSelector} from "react-redux";
 
 const CartPage = () => {
 
-	const { products, removeProduct } = useContext(CartContext)
+	const products = useSelector(state => state.cart)
 
 	return (
 		<Container maxWidth="md">
