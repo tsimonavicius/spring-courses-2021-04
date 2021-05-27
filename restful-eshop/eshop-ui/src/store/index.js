@@ -1,4 +1,4 @@
-import cart from "./slices/cartSlice";
+import cart, {subscribeToCartChanges} from "./slices/cartSlice";
 import {configureStore} from "@reduxjs/toolkit";
 import {logger} from "redux-logger/src";
 
@@ -12,12 +12,16 @@ import {logger} from "redux-logger/src";
 
 const constructStore = () => {
 
-	return configureStore({
+	const store = configureStore({
 		reducer: {
 			cart
 		},
 		middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
 	})
+
+	subscribeToCartChanges(store)
+
+	return store
 }
 
 export default constructStore
