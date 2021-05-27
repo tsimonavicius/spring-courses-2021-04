@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import {saveToLocalStorage} from "../../utils/localStorage";
+import {loadFromLocalStorage, saveToLocalStorage} from "../../utils/localStorage";
 import _ from "lodash"
 
 const initialState = []
@@ -32,6 +32,8 @@ const subscribeToCartChanges = (store) => {
 	}, 1000))
 }
 
+const loadCartFromLocalStorage = () => loadFromLocalStorage("cart") || undefined
+
 export default cartSlice.reducer
 export const { addToCart, removeFromCart } = cartSlice.actions
-export { subscribeToCartChanges }
+export { subscribeToCartChanges, loadCartFromLocalStorage }

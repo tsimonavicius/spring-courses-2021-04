@@ -7,3 +7,9 @@ export const saveToLocalStorage = (key, value) => {
 		// ignore
 	}
 }
+
+export const loadFromLocalStorage = (key) => {
+
+	const serializedValue = localStorage.getItem(key)
+	return JSON.parse(serializedValue)
+}
