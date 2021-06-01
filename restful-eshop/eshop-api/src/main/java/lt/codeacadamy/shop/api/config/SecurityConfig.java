@@ -2,6 +2,7 @@ package lt.codeacadamy.shop.api.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lt.codeacadamy.shop.api.security.JwtAuthenticationFilter;
+import lt.codeacadamy.shop.api.security.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -19,10 +20,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final ObjectMapper objectMapper;
     private final UserDetailsService userService;
+    private final JwtService jwtService;
 
-    public SecurityConfig(ObjectMapper objectMapper, UserDetailsService userService) {
+    public SecurityConfig(ObjectMapper objectMapper, UserDetailsService userService, JwtService jwtService) {
         this.objectMapper = objectMapper;
         this.userService = userService;
+        this.jwtService = jwtService;
     }
 
     @Override
@@ -39,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                     .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                     .and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper));
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(), objectMapper, jwtService));
     }
 
     @Override
