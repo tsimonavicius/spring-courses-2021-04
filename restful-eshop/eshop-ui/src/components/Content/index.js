@@ -5,6 +5,7 @@ import Product from "../../pages/Product/Product";
 import Products from "../../pages/Products/Products";
 import UserRegistration from "../UserRegistration/UserRegistration";
 import CartPage from "../../pages/CartPage/CartPage";
+import Login from "../../pages/Login/Login";
 
 export default () => (
 	<>
@@ -26,6 +27,9 @@ export default () => (
 			</Route>
 			<Route path="/cart">
 				<CartPage/>
+			</Route>
+			<Route path="/login">
+				<Login/>
 			</Route>
 		</Switch>
 	</>

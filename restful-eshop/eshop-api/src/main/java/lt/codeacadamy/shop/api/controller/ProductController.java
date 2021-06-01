@@ -19,7 +19,7 @@ import java.util.UUID;
  * @author Andrius Baltrunas
  */
 @RestController
-@RequestMapping(Endpoint.API_ROOT + Endpoint.PRODUCTS)
+@RequestMapping(Endpoint.PRODUCTS)
 @Api(tags = "This is Product controller")
 public class ProductController {
 
