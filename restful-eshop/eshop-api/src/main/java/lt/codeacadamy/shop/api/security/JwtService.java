@@ -1,9 +1,8 @@
 package lt.codeacadamy.shop.api.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import lt.codeacadamy.shop.api.entity.Role;
 import lt.codeacadamy.shop.api.entity.User;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,12 +51,17 @@ public class JwtService {
 
     public Authentication parseToken(String jwt) {
 
-        // parse and validate JWT
-        Claims parsedJwtBody = Jwts.parserBuilder()
-                .setSigningKey(secretKey)
-                .build()
-                .parseClaimsJws(jwt)
-                .getBody();
+        Claims parsedJwtBody;
+        try {
+            // parse and validate JWT
+            parsedJwtBody = Jwts.parserBuilder()
+                    .setSigningKey(secretKey)
+                    .build()
+                    .parseClaimsJws(jwt)
+                    .getBody();
+        } catch(ExpiredJwtException | UnsupportedJwtException | MalformedJwtException | SignatureException | IllegalArgumentException e) {
+            return null;
+        }
 
         String username = parsedJwtBody.getSubject();
         List<GrantedAuthority> roles = ((List<String>) parsedJwtBody.get("roles")).stream()
