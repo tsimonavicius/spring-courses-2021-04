@@ -7,6 +7,8 @@ import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
+import LanguageSwitcher from "../translation/LanguageSwitcher";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -28,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default () => {
+	const {t} = useTranslation('header');
+
 	const classes = useStyles()
 
 	const numberOfCartItems = useSelector(state => state.cart.length)
@@ -42,21 +46,22 @@ export default () => {
 					<nav>
 						<Link variant="button" color="textPrimary" to="/products"
 							  className={classes.link} activeClassName={classes.active} component={NavLink}>
-							Products
+							{t('products')}
 						</Link>
 						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
-							Users
+							{t('users')}
 						</Link>
 						<Badge badgeContent={numberOfCartItems} color="secondary" showZero>
 							<Link variant="button" color="textPrimary" to="/cart"
 								  className={classes.link} activeClassName={classes.active} component={NavLink}>
-								Cart
+								{t('cart')}
 							</Link>
 						</Badge>
 					</nav>
 					<Button href="#" color="primary" variant="outlined" className={classes.link}>
-						Login
+						{t('signIn')}
 					</Button>
+					<LanguageSwitcher/>
 				</Toolbar>
 			</AppBar>
 		</>
