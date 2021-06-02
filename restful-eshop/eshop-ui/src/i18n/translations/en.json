@@ -1,5 +1,12 @@
 {
   "translation": {
-    "Welcome to key not found": "Welcome to React"
+    "Welcome to key not found": "Welcome to React",
+    "Key with param": "Welcome to React {{name}} {{surname}}"
+  },
+  "second": {
+    "Key" : "Second namespace with param: {{count}}"
+  },
+  "products": {
+    "Key2": "Testing"
   }
 }
