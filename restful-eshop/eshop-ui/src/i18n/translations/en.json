@@ -1,12 +1,48 @@
 {
-  "translation": {
-    "Welcome to key not found": "Welcome to React",
-    "Key with param": "Welcome to React {{name}} {{surname}}"
+  "header": {
+    "cart": "Cart",
+    "products": "Products",
+    "users": "Users",
+    "signIn": "SignIn",
+    "signUp": "SignUp"
   },
-  "second": {
-    "Key" : "Second namespace with param: {{count}}"
+  "register": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "passwordConfirm": "Password Confirmation",
+    "register": "Register",
+    "submitting": "Submitting"
+  },
+  "login": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "submitting": "Submitting"
+  },
+  "product": {
+    "Product title": "Products",
+    "Price": "Price",
+    "Description": "Description",
+    "Category": "Category",
+    "TV": "TV",
+    "Phones": "Phones",
+    "Pumps": "Pumps",
+    "Create product": "Create product"
   },
   "products": {
-    "Key2": "Testing"
+    "Product Name": "Product Name",
+    "Quantity": "Quantity",
+    "Price (Eur)": "Price (Eur)",
+    "Description": "Description",
+    "Actions": "Actions"
+  },
+  "footer": {
+    "Eshop Footer": "Eshop Footer English"
+  },
+  "landing": {
+    "key": "Welcome to react",
+    "keyWithParam": "Welcome to React {{name}} {{lastname}}"
   }
 }

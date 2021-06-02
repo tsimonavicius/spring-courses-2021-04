@@ -1,0 +1,48 @@
+{
+  "header": {
+    "cart": "Warenkorb",
+    "products": "Produkte",
+    "users": "Benutzer",
+    "signIn": "Einlogen",
+    "signUp": "Anmelden"
+  },
+  "register": {
+    "firstName": "Name",
+    "lastName": "Nachname",
+    "email": "Email",
+    "password": "Passwort",
+    "passwordConfirm": "Passwort Bestätigung",
+    "register": "Registrieren",
+    "submitting": "Wird geladen"
+  },
+  "login": {
+    "email": "Email",
+    "password": "Passwort",
+    "login": "Einlogen",
+    "submitting": "Wird geladen"
+  },
+  "product": {
+    "Product title": "Produkte",
+    "Price": "Preis",
+    "Description": "Zusammenfassung",
+    "Category": "Kategorie",
+    "TV": "Fernseher",
+    "Phones": "Telefone",
+    "Pumps": "Pumps",
+    "Create product": "Erstellen Sie ein Produkt"
+  },
+  "products": {
+    "Product Name": "Produktname",
+    "Quantity": "Menge",
+    "Price (Eur)": "Preis (Eur)",
+    "Description": "Erläuterung",
+    "Actions": "Aktionen"
+  },
+  "footer": {
+    "Eshop Footer": "Eshop Footer Deutsch"
+  },
+  "landing": {
+    "key": "Welcome to react",
+    "keyWithParam": "Welcome to React {{name}} {{lastname}}"
+  }
+}

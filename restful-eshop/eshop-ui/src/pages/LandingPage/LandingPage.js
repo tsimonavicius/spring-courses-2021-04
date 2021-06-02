@@ -1,16 +1,5 @@
-import {Trans} from "react-i18next";
+const LandingPage = () => (
+	<h1>Hello!</h1>
+)
 
-const LandingPage = () => {
-
-	return (
-		<>
-			<Trans
-				i18nKey="Key with param2"
-				defaults="This is default value"
-				values={{name:'Andrius', surname: 'Baltrunas'}}
-			/>
-		</>
-	)
-}
-
-export default LandingPage;
+export default LandingPage

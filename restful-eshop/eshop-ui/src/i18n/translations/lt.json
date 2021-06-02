@@ -1,0 +1,48 @@
+{
+  "header": {
+    "cart": "Krepšelis",
+    "products": "Produktai",
+    "users": "Vartotojai",
+    "signIn": "Prisijungti",
+    "signUp": "registruotis"
+  },
+  "register": {
+    "firstName": "Vardas",
+    "lastName": "Pavardė",
+    "email": "E-paštas",
+    "password": "Slaptažodis",
+    "passwordConfirm": "Slaptažodžio patvirtinimas",
+    "register": "Registruotis",
+    "submitting": "Kraunama"
+  },
+  "login": {
+    "email": "E-paštas",
+    "password": "Slaptažodis",
+    "login": "Prisijungti",
+    "submitting": "Kraunama"
+  },
+  "product": {
+    "Product title": "Produktai",
+    "Price": "Kaina",
+    "Description": "Santrauka",
+    "Category": "Kategorija",
+    "TV": "Televizoriai",
+    "Phones": "Telefonai",
+    "Pumps": "Siurbliai",
+    "Create product": "Sukurti produktą"
+  },
+  "products": {
+    "Product Name": "Produkto pavadinimas",
+    "Quantity": "Kiekis",
+    "Price (Eur)": "Kaina (Eur)",
+    "Description": "Paaiškinimas",
+    "Actions": "Veiksmai"
+  },
+  "footer": {
+    "Eshop Footer": "Eshop Footer'is"
+  },
+  "landing": {
+    "key": "Welcome to react",
+    "keyWithParam": "Welcome to React {{name}} {{lastname}}"
+  }
+}

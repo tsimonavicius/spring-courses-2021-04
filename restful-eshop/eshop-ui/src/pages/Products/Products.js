@@ -15,6 +15,7 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import {connect} from "react-redux";
 import {addToCart} from "../../store/slices/cartSlice";
+import {useTranslation} from "react-i18next";
 
 const useStyle = makeStyles({
 	table: {
@@ -25,6 +26,7 @@ const useStyle = makeStyles({
 // tunedAddToCart = (product) => dispatch(addToCart(product))
 const Products = ({ tunedAddToCart }) => {
 
+	const { t } = useTranslation('products');
 	const [products, setProducts] = useState([])
 	const [loading, setLoading] = useState(true)
 
@@ -48,11 +50,11 @@ const Products = ({ tunedAddToCart }) => {
 				<Table aria-label="simple table">
 					<TableHead>
 						<TableRow>
-							<TableCell>Product Name</TableCell>
-							<TableCell align="right">Quantity</TableCell>
-							<TableCell align="right">Price (Eur)</TableCell>
-							<TableCell align="right">Description</TableCell>
-							<TableCell align="right">Actions</TableCell>
+							<TableCell>{t('Product Name')}</TableCell>
+							<TableCell align="right">{t('Quantity')}</TableCell>
+							<TableCell align="right">{t('Price (Eur)')}</TableCell>
+							<TableCell align="right">{t('Description')}</TableCell>
+							<TableCell align="right">{t('Actions')}</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
