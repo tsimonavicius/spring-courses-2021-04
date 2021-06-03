@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import {fetchCurrencies} from "../../api/CurrencyApi";
 
-const Currency =() => {
+const Currency = () => {
     const [currencies, setCurrencies] = useState();
     const [loading, setLoading] = useState(true);
 
-    useEffect(()=> {
+    useEffect(() => {
         fetchCurrencies().then(({data}) => {
             setCurrencies(data);
         }).finally(() => setLoading(false))
