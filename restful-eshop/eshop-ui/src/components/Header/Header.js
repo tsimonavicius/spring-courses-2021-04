@@ -62,7 +62,7 @@ export default () => {
 							</Link>
 						</Badge>
 					</nav>
-					<Button href="#" color="primary" variant="outlined" className={classes.link}>
+					<Button href="#" color="secondary" variant="outlined" className={classes.link}>
 						{t('signIn')}
 					</Button>
 					<LanguageSwitcher/>
