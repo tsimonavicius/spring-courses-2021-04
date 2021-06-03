@@ -4,7 +4,8 @@
     "products": "Produkte",
     "users": "Benutzer",
     "signIn": "Einlogen",
-    "signUp": "Anmelden"
+    "signUp": "Anmelden",
+    "currencies": "Markes"
   },
   "register": {
     "firstName": "Name",

@@ -4,7 +4,8 @@
     "products": "Produktai",
     "users": "Vartotojai",
     "signIn": "Prisijungti",
-    "signUp": "registruotis"
+    "signUp": "registruotis",
+    "currencies": "Valiutos"
   },
   "register": {
     "firstName": "Vardas",

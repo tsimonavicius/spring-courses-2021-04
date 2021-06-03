@@ -51,6 +51,10 @@ export default () => {
 						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
 							{t('users')}
 						</Link>
+						<Link variant="button" color="textPrimary" to="/currencies"
+							  className={classes.link} activeClassName={classes.active} component={NavLink}>
+							{t('currencies')}
+						</Link>
 						<Badge badgeContent={numberOfCartItems} color="secondary" showZero>
 							<Link variant="button" color="textPrimary" to="/cart"
 								  className={classes.link} activeClassName={classes.active} component={NavLink}>

@@ -4,7 +4,8 @@
     "products": "Products",
     "users": "Users",
     "signIn": "SignIn",
-    "signUp": "SignUp"
+    "signUp": "SignUp",
+    "currencies": "Currencies"
   },
   "register": {
     "firstName": "First Name",
