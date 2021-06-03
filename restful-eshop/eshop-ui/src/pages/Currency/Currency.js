@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {fetchCurrencies} from "../../api/CurrencyApi";
 import {
-    CircularProgress,
+    CircularProgress, Grid,
     Paper,
     Table,
     TableBody,
@@ -10,16 +10,20 @@ import {
     TableHead,
     TableRow
 } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/styles";
 import {useTranslation} from "react-i18next";
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) =>({
     table: {
         minWidth: 450,
+    },
+    circular: {
+        position: 'fixed',
+        top: '50%',
+        left: '50%'
     }
-})
+}));
 
 const Currency = () => {
     const [currencies, setCurrencies] = useState();
@@ -37,7 +41,7 @@ const Currency = () => {
 
     return (
         <>
-        {loading ? <CircularProgress/> :
+        {loading ? <CircularProgress className={classes.circular}/> :
                 <Container maxWidth="md">
                     <TableContainer component={Paper} className={classes.table}>
                         <Table aria-label="simple table">
