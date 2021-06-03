@@ -45,5 +45,9 @@
   "landing": {
     "key": "Welcome to react",
     "keyWithParam": "Welcome to React {{name}} {{lastname}}"
+  },
+  "currency": {
+    "currency": "Currency",
+    "value": "Value"
   }
 }
