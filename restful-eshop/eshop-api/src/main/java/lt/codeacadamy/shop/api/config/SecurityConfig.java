@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                 .authorizeRequests()
+                    .antMatchers("/weather").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .exceptionHandling()
