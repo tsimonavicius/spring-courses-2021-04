@@ -4,11 +4,13 @@ import Button from "@material-ui/core/Button";
 import {login} from "../../api/userApi";
 import Container from "@material-ui/core/Container";
 import {useDispatch} from "react-redux";
+import { useHistory } from 'react-router-dom'
 import {login as setLogin} from '../../store/slices/userSlice'
 
 const Login = () => {
 
 	const dispatch = useDispatch()
+	const history = useHistory()
 
 	const postLogin = (loginData, {setSubmitting}) => {
 		setSubmitting(true)
@@ -20,6 +22,8 @@ const Login = () => {
 						loggedInUser,
 						jwt: authorization
 					}))
+
+				history.push('/')
 			})
 			.finally(() => setSubmitting(false))
 	}
