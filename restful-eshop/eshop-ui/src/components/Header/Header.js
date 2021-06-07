@@ -35,7 +35,7 @@ export default () => {
 	const classes = useStyles()
 
 	const numberOfCartItems = useSelector(state => state.cart.length)
-	const userFullName = useSelector(state => state.user.loggedInUser?.fullName)
+	const loggedInUser = useSelector(state => state.user.loggedInUser)
 
 	return (
 		<>
@@ -49,9 +49,13 @@ export default () => {
 							  className={classes.link} activeClassName={classes.active} component={NavLink}>
 							{t('products')}
 						</Link>
-						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
-							{t('users')}
-						</Link>
+						{
+							loggedInUser?.roles.includes("ADMIN") ?
+							<Link variant="button" color="textPrimary" to="/users" className={classes.link}
+							  activeClassName={classes.active} component={NavLink}>
+								{t('users')}
+							</Link> : ""
+						}
 						<Link variant="button" color="textPrimary" to="/currencies"
 							  className={classes.link} activeClassName={classes.active} component={NavLink}>
 							{t('currencies')}
@@ -64,10 +68,10 @@ export default () => {
 						</Badge>
 					</nav>
 					<Box mx={4}>
-						{userFullName ?
+						{loggedInUser?.fullName ?
 							<>
 								<Typography variant="h6" component="span">
-									Sveiki, {userFullName}
+									Sveiki, {loggedInUser.fullName}
 								</Typography>
 								<Button color="secondary" variant="contained" className={classes.link}>
 									Logout

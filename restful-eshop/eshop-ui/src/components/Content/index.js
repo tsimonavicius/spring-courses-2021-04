@@ -9,6 +9,8 @@ import Login from "../../pages/Login/Login";
 import Currency from "../../pages/Currency/Currency";
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 import {green, pink} from "@material-ui/core/colors";
+import Users from "../../pages/Users/Users";
+import SecuredRoute from "../SecuredRoute/SecuredRoute";
 
 export default () => {
     const theme = createMuiTheme({
@@ -47,6 +49,9 @@ export default () => {
                 <Route path="/currencies">
                     <Currency/>
                 </Route>
+                <SecuredRoute path="/users" roles={["ADMIN"]}>
+                    <Users/>
+                </SecuredRoute>
             </Switch>
         </>
     )
