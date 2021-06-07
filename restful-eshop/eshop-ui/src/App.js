@@ -6,7 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {BrowserRouter as Router} from "react-router-dom"
-import constructStore from "./store";
+import store from "./store";
 import {Provider} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -16,8 +16,6 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: '100vh',
 	}
 }));
-
-const store = constructStore()
 
 function App() {
 	const classes = useStyles()

@@ -29,4 +29,6 @@ const constructStore = () => {
 	return store
 }
 
-export default constructStore
+const store = constructStore()
+
+export default store
