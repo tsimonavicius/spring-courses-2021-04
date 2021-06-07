@@ -3,15 +3,23 @@ import FormikInput from "../../components/FormikInput/FormikInput";
 import Button from "@material-ui/core/Button";
 import {login} from "../../api/userApi";
 import Container from "@material-ui/core/Container";
+import {useDispatch} from "react-redux";
+import {login as setLogin} from '../../store/slices/userSlice'
 
 const Login = () => {
+
+	const dispatch = useDispatch()
 
 	const postLogin = (loginData, {setSubmitting}) => {
 		setSubmitting(true)
 
 		login(loginData)
-			.then(({headers: {authorization}}) => {
-				console.log("JWT", authorization)
+			.then(({data: loggedInUser, headers: { authorization }}) => {
+				dispatch(
+					setLogin({
+						loggedInUser,
+						jwt: authorization
+					}))
 			})
 			.finally(() => setSubmitting(false))
 	}

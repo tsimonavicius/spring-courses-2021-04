@@ -1,6 +1,7 @@
 import cart, {loadCartFromLocalStorage, subscribeToCartChanges} from "./slices/cartSlice";
 import {configureStore} from "@reduxjs/toolkit";
 import {logger} from "redux-logger/src";
+import user from './slices/userSlice'
 
 /* store = {
 		cart: [...],
@@ -14,7 +15,8 @@ const constructStore = () => {
 
 	const store = configureStore({
 		reducer: {
-			cart
+			cart,
+			user
 		},
 		middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
 		preloadedState: {
