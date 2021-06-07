@@ -1,11 +1,11 @@
 import AppBar from "@material-ui/core/AppBar";
-import {Badge, Toolbar} from "@material-ui/core";
+import {Badge, Box, Toolbar} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import {NavLink} from "react-router-dom";
+import {Link as RouterLink, NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import LanguageSwitcher from "../translation/LanguageSwitcher";
 import {useTranslation} from "react-i18next";
@@ -35,6 +35,7 @@ export default () => {
 	const classes = useStyles()
 
 	const numberOfCartItems = useSelector(state => state.cart.length)
+	const userFullName = useSelector(state => state.user.loggedInUser?.fullName)
 
 	return (
 		<>
@@ -62,9 +63,27 @@ export default () => {
 							</Link>
 						</Badge>
 					</nav>
-					<Button href="#" color="secondary" variant="outlined" className={classes.link}>
-						{t('signIn')}
-					</Button>
+					<Box mx={4}>
+						{userFullName ?
+							<>
+								<Typography variant="h6" component="span">
+									Sveiki, {userFullName}
+								</Typography>
+								<Button color="secondary" variant="contained" className={classes.link}>
+									Logout
+								</Button>
+							</>
+							 :
+							<>
+								<Button color="primary" to="/login" variant="contained" component={RouterLink}>
+									Login
+								</Button>
+								<Button href="#" color="secondary" variant="contained" className={classes.link}>
+									{t('signIn')}
+								</Button>
+							</>
+						}
+					</Box>
 					<LanguageSwitcher/>
 				</Toolbar>
 			</AppBar>
