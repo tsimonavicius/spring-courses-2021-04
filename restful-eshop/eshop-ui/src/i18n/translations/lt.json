@@ -49,5 +49,8 @@
   "currency": {
     "currency": "Valiuta",
     "value": "Reiksme"
+  },
+  "validations": {
+    "required": "Laukas yra privalomas"
   }
 }

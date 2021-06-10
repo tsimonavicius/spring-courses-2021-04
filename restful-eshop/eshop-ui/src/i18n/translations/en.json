@@ -49,5 +49,8 @@
   "currency": {
     "currency": "Currency",
     "value": "Value"
+  },
+  "validations": {
+    "required": "Field is required"
   }
 }
